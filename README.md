@@ -5,6 +5,6 @@ Projet pour la 4ème année simulant un serveur d'impression. Programmation para
 
 Etudiant participant au projet :
 
-_ FADDA Vincent
-_ LORENZATO Thomas
-_ WATTEZ Félix
+_ FADDA Vincent <br>
+_ LORENZATO Thomas <br>
+_ WATTEZ Félix <br>
