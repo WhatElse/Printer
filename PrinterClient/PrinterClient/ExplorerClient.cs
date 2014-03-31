@@ -13,6 +13,10 @@ namespace PrinterClient
 {
     public partial class ExplorerClient : Form
     {
+
+        public List<string> pathArray = new List<string>();
+
+
         public ExplorerClient()
         {
             InitializeComponent();
@@ -79,13 +83,34 @@ namespace PrinterClient
 				subItems = new ListViewItem.ListViewSubItem[]
                     { new ListViewItem.ListViewSubItem(item, "File"), 
                      new ListViewItem.ListViewSubItem(item, 
-						file.LastAccessTime.ToShortDateString())};
+						file.LastAccessTime.ToShortDateString()),
+                    new ListViewItem.ListViewSubItem(item, file.Directory.ToString())};
 
 				item.SubItems.AddRange(subItems);
 				listView.Items.Add(item);
 			}
 
 			listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void listView_Click(object sender, EventArgs e)
+        {
+            ListView lw = (ListView)sender;
+            string filename = lw.SelectedItems[0].Text;
+            string path = lw.SelectedItems[0].SubItems[3].Text;
+
+            bool exist = false;
+            foreach (string itemChecked in checkedListBoxFilePrinter.Items)
+            {
+                if (itemChecked == path+filename)
+                {
+                    exist = true;
+                }
+            }
+            if (!exist)
+            {
+                checkedListBoxFilePrinter.Items.Add(path+filename,true);
+            }
         }
     }
 }
