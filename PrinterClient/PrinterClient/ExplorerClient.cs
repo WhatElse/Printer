@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 
 namespace PrinterClient
 {
@@ -15,6 +16,7 @@ namespace PrinterClient
     {
 
         public List<string> pathArray = new List<string>();
+        static readonly object verrou = new object();
 
 
         public ExplorerClient()
@@ -97,20 +99,70 @@ namespace PrinterClient
         {
             ListView lw = (ListView)sender;
             string filename = lw.SelectedItems[0].Text;
-            string path = lw.SelectedItems[0].SubItems[3].Text;
-
-            bool exist = false;
-            foreach (string itemChecked in checkedListBoxFilePrinter.Items)
+            try
             {
-                if (itemChecked == path+filename)
+                if (lw.SelectedItems[0].SubItems[1].Text == "File")
                 {
-                    exist = true;
+                    string path = lw.SelectedItems[0].SubItems[3].Text;
+
+                    bool exist = false;
+                    foreach (string itemChecked in checkedListBoxFilePrinter.Items)
+                    {
+                        if (itemChecked == path + "\\" + filename)
+                        {
+                            exist = true;
+                        }
+                    }
+                    if (!exist)
+                    {
+                        checkedListBoxFilePrinter.Items.Add(path+"\\"+filename, true);
+                    }
                 }
             }
-            if (!exist)
+            catch
+            { }
+        }
+
+        private void buttonRAZ_Click(object sender, EventArgs e)
+        {
+            checkedListBoxFilePrinter.Items.Clear();
+        }
+
+        private void print_button_Click(object sender, EventArgs e)
+        {
+            foreach (string itemChecked in checkedListBoxFilePrinter.CheckedItems)
             {
-                checkedListBoxFilePrinter.Items.Add(path+filename,true);
+                copyTheFile(itemChecked);
+            }
+            MessageBox.Show("Envoi au serveur OK !");
+        }
+
+        public void copyTheFile (string checkedItem)
+        {
+            string[] filename = checkedItem.Split("\\".ToCharArray());
+            string name = filename[filename.Length - 1];
+            try
+            {
+                File.Copy(checkedItem, @"../../tmp/" + name, true);
+            }
+            catch
+            {
+                MessageBox.Show("Error");
             }
         }
+
+        public void destroyTheFile(string checkedItem)
+        {
+            try
+            {
+                File.Delete(checkedItem);
+            }
+            catch
+            {
+                // a faire
+            }
+        }
+
+
     }
 }
