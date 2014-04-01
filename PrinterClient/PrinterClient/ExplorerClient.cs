@@ -22,9 +22,26 @@ namespace PrinterClient
         public ExplorerClient()
         {
             InitializeComponent();
+            deleteAllFilesInTMP();
             PopulateTreeView();
-
             this.treeView.NodeMouseClick += new TreeNodeMouseClickEventHandler(this.treeView_NodeMouseClick);
+        }
+
+
+        public void deleteAllFilesInTMP() 
+        {
+            try
+            {
+                string[] filenames = Directory.GetFiles(@"../../tmp");
+                foreach (string fName in filenames)
+                {
+                    File.Delete(fName);
+                }
+            }
+            catch
+            {
+                Directory.CreateDirectory(@"../../tmp");
+            }
         }
 
         private void PopulateTreeView()
@@ -130,24 +147,30 @@ namespace PrinterClient
 
         private void print_button_Click(object sender, EventArgs e)
         {
+            int cpt = 0;
+
             foreach (string itemChecked in checkedListBoxFilePrinter.CheckedItems)
             {
-                copyTheFile(itemChecked);
+                copyTheFile(itemChecked, cpt);
+                cpt += 1;
             }
             MessageBox.Show("Envoi au serveur OK !");
+
+            //La il fazut faire une suppression totale des fichiers contenus dans le repertoire /tmp
         }
 
-        public void copyTheFile (string checkedItem)
+        public void copyTheFile (string checkedItem, int compteur)
         {
             string[] filename = checkedItem.Split("\\".ToCharArray());
             string name = filename[filename.Length - 1];
             try
             {
-                File.Copy(checkedItem, @"../../tmp/" + name, true);
+                File.Copy(checkedItem, @"../../tmp/" + compteur + name, true);
             }
             catch
             {
-                MessageBox.Show("Error");
+                Directory.CreateDirectory(@"../../tmp/");
+                File.Copy(checkedItem, @"../../tmp/" + compteur + name, true);
             }
         }
 
@@ -158,9 +181,7 @@ namespace PrinterClient
                 File.Delete(checkedItem);
             }
             catch
-            {
-                // a faire
-            }
+            { }
         }
 
 
