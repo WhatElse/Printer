@@ -30,16 +30,27 @@ namespace PrinterClient
 
         public void deleteAllFilesInTMP() 
         {
-            try
+            if (Directory.Exists(tmpDirectory))
             {
-                string[] filenames = Directory.GetFiles(tmpDirectory);
-                foreach (string fName in filenames)
+                try
                 {
-                    File.Delete(fName);
+                    string[] filenames = Directory.GetFiles(tmpDirectory);
+                    foreach (string fName in filenames)
+                    {
+                        File.Delete(fName);
+                    }
                 }
+                catch
+                {}
             }
-            catch
+            else
             {
+                try
+                {
+                    Directory.CreateDirectory(tmpDirectory);
+                }
+                catch
+                {}
             }
         }
 
