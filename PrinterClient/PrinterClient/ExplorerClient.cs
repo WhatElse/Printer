@@ -17,7 +17,7 @@ namespace PrinterClient
 
         public List<string> pathArray = new List<string>();
         static readonly object verrou = new object();
-
+        static string tmpDirectory = @"../../tmp/";
 
         public ExplorerClient()
         {
@@ -32,7 +32,7 @@ namespace PrinterClient
         {
             try
             {
-                string[] filenames = Directory.GetFiles(@"../../tmp");
+                string[] filenames = Directory.GetFiles(tmpDirectory);
                 foreach (string fName in filenames)
                 {
                     File.Delete(fName);
@@ -40,7 +40,7 @@ namespace PrinterClient
             }
             catch
             {
-                Directory.CreateDirectory(@"../../tmp");
+                Directory.CreateDirectory(tmpDirectory);
             }
         }
 
@@ -48,7 +48,7 @@ namespace PrinterClient
         {
             TreeNode rootNode;
 
-            DirectoryInfo info = new DirectoryInfo(@"../..");
+            DirectoryInfo info = new DirectoryInfo(@"../../");
             if (info.Exists)
             {
                 rootNode = new TreeNode(info.Name);
@@ -165,12 +165,12 @@ namespace PrinterClient
             string name = filename[filename.Length - 1];
             try
             {
-                File.Copy(checkedItem, @"../../tmp/" + compteur + name, true);
+                File.Copy(checkedItem, tmpDirectory + compteur + name, true);
             }
             catch
             {
-                Directory.CreateDirectory(@"../../tmp/");
-                File.Copy(checkedItem, @"../../tmp/" + compteur + name, true);
+                Directory.CreateDirectory(tmpDirectory);
+                File.Copy(checkedItem, tmpDirectory + compteur + name, true);
             }
         }
 
