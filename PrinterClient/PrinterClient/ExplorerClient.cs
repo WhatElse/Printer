@@ -156,7 +156,9 @@ namespace PrinterClient
             }
             MessageBox.Show("Envoi au serveur OK !");
 
-            //La il fazut faire une suppression totale des fichiers contenus dans le repertoire /tmp
+            //ICI ON FAIT LENVOI DES FICHIERS SUR LE SERVEUR
+
+            deleteAllFilesInTMP();
         }
 
         public void copyTheFile (string checkedItem, int compteur)
@@ -173,17 +175,5 @@ namespace PrinterClient
                 File.Copy(checkedItem, tmpDirectory + compteur + name, true);
             }
         }
-
-        public void destroyTheFile(string checkedItem)
-        {
-            try
-            {
-                File.Delete(checkedItem);
-            }
-            catch
-            { }
-        }
-
-
     }
 }
