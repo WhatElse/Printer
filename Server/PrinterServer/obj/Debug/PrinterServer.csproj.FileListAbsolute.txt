@@ -1,2 +1,5 @@
 C:\Users\Kamui\Dropbox\EPSI\I4\Projets\Printer\Server\PrinterServer\bin\Debug\PrinterServer.exe.config
 C:\Users\Felix\Documents\GitHub\Printer\Server\PrinterServer\bin\Debug\PrinterServer.exe.config
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\bin\Debug\PrinterServer.exe.config
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\obj\Debug\PrinterServer.Properties.Resources.resources
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\obj\Debug\PrinterServer.csproj.GenerateResource.Cache

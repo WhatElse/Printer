@@ -40,7 +40,6 @@ namespace PrinterClient
             }
             catch
             {
-                Directory.CreateDirectory(tmpDirectory);
             }
         }
 
