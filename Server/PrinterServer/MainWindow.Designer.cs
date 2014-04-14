@@ -44,7 +44,14 @@
             this.PauseDocument = new System.Windows.Forms.Button();
             this.DeleteDocument = new System.Windows.Forms.Button();
             this.OpenClientsWindow = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnQuitter = new System.Windows.Forms.Button();
+            this.btnMAJImprimante = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblFichierEnCours = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.ServerWaiter = new System.ComponentModel.BackgroundWorker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PrinterList
@@ -159,7 +166,7 @@
             this.DocumentsList.FormattingEnabled = true;
             this.DocumentsList.Location = new System.Drawing.Point(569, 43);
             this.DocumentsList.Name = "DocumentsList";
-            this.DocumentsList.Size = new System.Drawing.Size(223, 225);
+            this.DocumentsList.Size = new System.Drawing.Size(335, 225);
             this.DocumentsList.TabIndex = 12;
             // 
             // PauseDocument
@@ -188,22 +195,75 @@
             this.OpenClientsWindow.TabIndex = 15;
             this.OpenClientsWindow.Text = "Voir les clients connectés";
             this.OpenClientsWindow.UseVisualStyleBackColor = true;
+            this.OpenClientsWindow.Click += new System.EventHandler(this.OpenClientsWindow_Click);
             // 
-            // button1
+            // btnQuitter
             // 
-            this.button1.Location = new System.Drawing.Point(384, 347);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Quitter";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnQuitter.Location = new System.Drawing.Point(384, 347);
+            this.btnQuitter.Name = "btnQuitter";
+            this.btnQuitter.Size = new System.Drawing.Size(75, 23);
+            this.btnQuitter.TabIndex = 16;
+            this.btnQuitter.Text = "Quitter";
+            this.btnQuitter.UseVisualStyleBackColor = true;
+            this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
+            // 
+            // btnMAJImprimante
+            // 
+            this.btnMAJImprimante.Location = new System.Drawing.Point(220, 193);
+            this.btnMAJImprimante.Name = "btnMAJImprimante";
+            this.btnMAJImprimante.Size = new System.Drawing.Size(179, 23);
+            this.btnMAJImprimante.TabIndex = 17;
+            this.btnMAJImprimante.Text = "Mettre à jour l\'imprimante";
+            this.btnMAJImprimante.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(148, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Fichier en cours d\'impression :";
+            // 
+            // lblFichierEnCours
+            // 
+            this.lblFichierEnCours.AutoSize = true;
+            this.lblFichierEnCours.Location = new System.Drawing.Point(12, 39);
+            this.lblFichierEnCours.Name = "lblFichierEnCours";
+            this.lblFichierEnCours.Size = new System.Drawing.Size(0, 13);
+            this.lblFichierEnCours.TabIndex = 19;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(6, 64);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(303, 23);
+            this.progressBar1.TabIndex = 20;
+            // 
+            // ServerWaiter
+            // 
+            this.ServerWaiter.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.progressBar1);
+            this.groupBox1.Controls.Add(this.lblFichierEnCours);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Location = new System.Drawing.Point(220, 236);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(315, 93);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Impression";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 382);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(964, 382);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnMAJImprimante);
+            this.Controls.Add(this.btnQuitter);
             this.Controls.Add(this.OpenClientsWindow);
             this.Controls.Add(this.DeleteDocument);
             this.Controls.Add(this.PauseDocument);
@@ -222,6 +282,9 @@
             this.Controls.Add(this.PrinterList);
             this.Name = "MainWindow";
             this.Text = "FWLG Printer Server";
+            this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,7 +308,13 @@
         private System.Windows.Forms.Button PauseDocument;
         private System.Windows.Forms.Button DeleteDocument;
         private System.Windows.Forms.Button OpenClientsWindow;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnQuitter;
+        private System.Windows.Forms.Button btnMAJImprimante;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblFichierEnCours;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.ComponentModel.BackgroundWorker ServerWaiter;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
