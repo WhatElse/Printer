@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.PrinterList = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.AddPrinter = new System.Windows.Forms.Button();
@@ -35,9 +36,7 @@
             this.lblPrinterName = new System.Windows.Forms.Label();
             this.PrinterName = new System.Windows.Forms.TextBox();
             this.lblPath = new System.Windows.Forms.Label();
-            this.Path = new System.Windows.Forms.TextBox();
             this.ExplorePath = new System.Windows.Forms.Button();
-            this.PrinterAvailable = new System.Windows.Forms.CheckBox();
             this.SwitchState = new System.Windows.Forms.Button();
             this.lblDocuments = new System.Windows.Forms.Label();
             this.DocumentsList = new System.Windows.Forms.ListBox();
@@ -51,194 +50,120 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.ServerWaiter = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.etatImprimante = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.vitesseImprimante = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PrinterList
             // 
             this.PrinterList.FormattingEnabled = true;
-            this.PrinterList.Location = new System.Drawing.Point(15, 43);
+            resources.ApplyResources(this.PrinterList, "PrinterList");
             this.PrinterList.Name = "PrinterList";
-            this.PrinterList.Size = new System.Drawing.Size(157, 225);
-            this.PrinterList.TabIndex = 0;
             this.PrinterList.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 27);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Imprimantes connectées";
             // 
             // AddPrinter
             // 
-            this.AddPrinter.Location = new System.Drawing.Point(15, 275);
+            resources.ApplyResources(this.AddPrinter, "AddPrinter");
             this.AddPrinter.Name = "AddPrinter";
-            this.AddPrinter.Size = new System.Drawing.Size(75, 23);
-            this.AddPrinter.TabIndex = 2;
-            this.AddPrinter.Text = "Ajouter";
             this.AddPrinter.UseVisualStyleBackColor = true;
             // 
             // DeletePrinter
             // 
-            this.DeletePrinter.Location = new System.Drawing.Point(97, 275);
+            resources.ApplyResources(this.DeletePrinter, "DeletePrinter");
             this.DeletePrinter.Name = "DeletePrinter";
-            this.DeletePrinter.Size = new System.Drawing.Size(75, 23);
-            this.DeletePrinter.TabIndex = 3;
-            this.DeletePrinter.Text = "Supprimer";
             this.DeletePrinter.UseVisualStyleBackColor = true;
             // 
             // lblPrinterName
             // 
-            this.lblPrinterName.AutoSize = true;
-            this.lblPrinterName.Location = new System.Drawing.Point(217, 27);
+            resources.ApplyResources(this.lblPrinterName, "lblPrinterName");
             this.lblPrinterName.Name = "lblPrinterName";
-            this.lblPrinterName.Size = new System.Drawing.Size(101, 13);
-            this.lblPrinterName.TabIndex = 4;
-            this.lblPrinterName.Text = "Nom de l\'imprimante";
             // 
             // PrinterName
             // 
-            this.PrinterName.Location = new System.Drawing.Point(220, 43);
+            resources.ApplyResources(this.PrinterName, "PrinterName");
             this.PrinterName.Name = "PrinterName";
-            this.PrinterName.Size = new System.Drawing.Size(315, 20);
-            this.PrinterName.TabIndex = 5;
             // 
             // lblPath
             // 
-            this.lblPath.AutoSize = true;
-            this.lblPath.Location = new System.Drawing.Point(217, 66);
+            resources.ApplyResources(this.lblPath, "lblPath");
             this.lblPath.Name = "lblPath";
-            this.lblPath.Size = new System.Drawing.Size(114, 13);
-            this.lblPath.TabIndex = 6;
-            this.lblPath.Text = "Chemin de l\'imprimante";
-            // 
-            // Path
-            // 
-            this.Path.Location = new System.Drawing.Point(220, 83);
-            this.Path.Name = "Path";
-            this.Path.Size = new System.Drawing.Size(315, 20);
-            this.Path.TabIndex = 7;
             // 
             // ExplorePath
             // 
-            this.ExplorePath.Location = new System.Drawing.Point(220, 110);
+            resources.ApplyResources(this.ExplorePath, "ExplorePath");
             this.ExplorePath.Name = "ExplorePath";
-            this.ExplorePath.Size = new System.Drawing.Size(75, 23);
-            this.ExplorePath.TabIndex = 8;
-            this.ExplorePath.Text = "Parcourir";
             this.ExplorePath.UseVisualStyleBackColor = true;
-            // 
-            // PrinterAvailable
-            // 
-            this.PrinterAvailable.AutoSize = true;
-            this.PrinterAvailable.Checked = true;
-            this.PrinterAvailable.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.PrinterAvailable.Location = new System.Drawing.Point(220, 139);
-            this.PrinterAvailable.Name = "PrinterAvailable";
-            this.PrinterAvailable.Size = new System.Drawing.Size(109, 17);
-            this.PrinterAvailable.TabIndex = 9;
-            this.PrinterAvailable.Text = "Imprimante visible";
-            this.PrinterAvailable.UseVisualStyleBackColor = true;
             // 
             // SwitchState
             // 
-            this.SwitchState.Location = new System.Drawing.Point(220, 163);
+            resources.ApplyResources(this.SwitchState, "SwitchState");
             this.SwitchState.Name = "SwitchState";
-            this.SwitchState.Size = new System.Drawing.Size(179, 23);
-            this.SwitchState.TabIndex = 10;
-            this.SwitchState.Text = "Mettre en pause l\'impression";
             this.SwitchState.UseVisualStyleBackColor = true;
             // 
             // lblDocuments
             // 
-            this.lblDocuments.AutoSize = true;
-            this.lblDocuments.Location = new System.Drawing.Point(566, 27);
+            resources.ApplyResources(this.lblDocuments, "lblDocuments");
             this.lblDocuments.Name = "lblDocuments";
-            this.lblDocuments.Size = new System.Drawing.Size(112, 13);
-            this.lblDocuments.TabIndex = 11;
-            this.lblDocuments.Text = "Documents en attente";
             // 
             // DocumentsList
             // 
             this.DocumentsList.FormattingEnabled = true;
-            this.DocumentsList.Location = new System.Drawing.Point(569, 43);
+            resources.ApplyResources(this.DocumentsList, "DocumentsList");
             this.DocumentsList.Name = "DocumentsList";
-            this.DocumentsList.Size = new System.Drawing.Size(335, 225);
-            this.DocumentsList.TabIndex = 12;
             // 
             // PauseDocument
             // 
-            this.PauseDocument.Location = new System.Drawing.Point(569, 275);
+            resources.ApplyResources(this.PauseDocument, "PauseDocument");
             this.PauseDocument.Name = "PauseDocument";
-            this.PauseDocument.Size = new System.Drawing.Size(137, 23);
-            this.PauseDocument.TabIndex = 13;
-            this.PauseDocument.Text = "Suspendre le document";
             this.PauseDocument.UseVisualStyleBackColor = true;
             // 
             // DeleteDocument
             // 
-            this.DeleteDocument.Location = new System.Drawing.Point(569, 305);
+            resources.ApplyResources(this.DeleteDocument, "DeleteDocument");
             this.DeleteDocument.Name = "DeleteDocument";
-            this.DeleteDocument.Size = new System.Drawing.Size(137, 23);
-            this.DeleteDocument.TabIndex = 14;
-            this.DeleteDocument.Text = "Annuler le document";
             this.DeleteDocument.UseVisualStyleBackColor = true;
             // 
             // OpenClientsWindow
             // 
-            this.OpenClientsWindow.Location = new System.Drawing.Point(220, 347);
+            resources.ApplyResources(this.OpenClientsWindow, "OpenClientsWindow");
             this.OpenClientsWindow.Name = "OpenClientsWindow";
-            this.OpenClientsWindow.Size = new System.Drawing.Size(157, 23);
-            this.OpenClientsWindow.TabIndex = 15;
-            this.OpenClientsWindow.Text = "Voir les clients connectés";
             this.OpenClientsWindow.UseVisualStyleBackColor = true;
             this.OpenClientsWindow.Click += new System.EventHandler(this.OpenClientsWindow_Click);
             // 
             // btnQuitter
             // 
-            this.btnQuitter.Location = new System.Drawing.Point(384, 347);
+            resources.ApplyResources(this.btnQuitter, "btnQuitter");
             this.btnQuitter.Name = "btnQuitter";
-            this.btnQuitter.Size = new System.Drawing.Size(75, 23);
-            this.btnQuitter.TabIndex = 16;
-            this.btnQuitter.Text = "Quitter";
             this.btnQuitter.UseVisualStyleBackColor = true;
             this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
             // 
             // btnMAJImprimante
             // 
-            this.btnMAJImprimante.Location = new System.Drawing.Point(220, 193);
+            resources.ApplyResources(this.btnMAJImprimante, "btnMAJImprimante");
             this.btnMAJImprimante.Name = "btnMAJImprimante";
-            this.btnMAJImprimante.Size = new System.Drawing.Size(179, 23);
-            this.btnMAJImprimante.TabIndex = 17;
-            this.btnMAJImprimante.Text = "Mettre à jour l\'imprimante";
             this.btnMAJImprimante.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 19);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(148, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Fichier en cours d\'impression :";
             // 
             // lblFichierEnCours
             // 
-            this.lblFichierEnCours.AutoSize = true;
-            this.lblFichierEnCours.Location = new System.Drawing.Point(12, 39);
+            resources.ApplyResources(this.lblFichierEnCours, "lblFichierEnCours");
             this.lblFichierEnCours.Name = "lblFichierEnCours";
-            this.lblFichierEnCours.Size = new System.Drawing.Size(0, 13);
-            this.lblFichierEnCours.TabIndex = 19;
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(6, 64);
+            resources.ApplyResources(this.progressBar1, "progressBar1");
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(303, 23);
-            this.progressBar1.TabIndex = 20;
             // 
             // ServerWaiter
             // 
@@ -249,18 +174,32 @@
             this.groupBox1.Controls.Add(this.progressBar1);
             this.groupBox1.Controls.Add(this.lblFichierEnCours);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(220, 236);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(315, 93);
-            this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Impression";
+            // 
+            // etatImprimante
+            // 
+            resources.ApplyResources(this.etatImprimante, "etatImprimante");
+            this.etatImprimante.Name = "etatImprimante";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // vitesseImprimante
+            // 
+            resources.ApplyResources(this.vitesseImprimante, "vitesseImprimante");
+            this.vitesseImprimante.Name = "vitesseImprimante";
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(964, 382);
+            this.Controls.Add(this.vitesseImprimante);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.etatImprimante);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnMAJImprimante);
             this.Controls.Add(this.btnQuitter);
@@ -270,9 +209,7 @@
             this.Controls.Add(this.DocumentsList);
             this.Controls.Add(this.lblDocuments);
             this.Controls.Add(this.SwitchState);
-            this.Controls.Add(this.PrinterAvailable);
             this.Controls.Add(this.ExplorePath);
-            this.Controls.Add(this.Path);
             this.Controls.Add(this.lblPath);
             this.Controls.Add(this.PrinterName);
             this.Controls.Add(this.lblPrinterName);
@@ -281,7 +218,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PrinterList);
             this.Name = "MainWindow";
-            this.Text = "FWLG Printer Server";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -299,9 +235,7 @@
         private System.Windows.Forms.Label lblPrinterName;
         private System.Windows.Forms.TextBox PrinterName;
         private System.Windows.Forms.Label lblPath;
-        private System.Windows.Forms.TextBox Path;
         private System.Windows.Forms.Button ExplorePath;
-        private System.Windows.Forms.CheckBox PrinterAvailable;
         private System.Windows.Forms.Button SwitchState;
         private System.Windows.Forms.Label lblDocuments;
         private System.Windows.Forms.ListBox DocumentsList;
@@ -315,6 +249,9 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.ComponentModel.BackgroundWorker ServerWaiter;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox etatImprimante;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox vitesseImprimante;
     }
 }
 
