@@ -68,5 +68,12 @@ namespace PrinterServer
         {
 
         }
+
+        private void AddPrinter_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int alea = random.Next(1,5);
+            Printer newPrinter = new Printer("", "En ligne", alea, true);
+        }
     }
 }

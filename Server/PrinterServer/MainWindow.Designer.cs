@@ -72,6 +72,7 @@
             resources.ApplyResources(this.AddPrinter, "AddPrinter");
             this.AddPrinter.Name = "AddPrinter";
             this.AddPrinter.UseVisualStyleBackColor = true;
+            this.AddPrinter.Click += new System.EventHandler(this.AddPrinter_Click);
             // 
             // DeletePrinter
             // 
