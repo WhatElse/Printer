@@ -291,11 +291,11 @@
     <value>12</value>
   </data>
   <data name="SwitchState.Location" type="System.Drawing.Point, System.Drawing">
-<<<<<<< HEAD
+
     <value>220, 124</value>
-=======
+
     <value>220, 138</value>
->>>>>>> 7039a5af38d84913513719e01d7b454fb1b751f6
+
   </data>
   <data name="SwitchState.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 23</value>
@@ -463,11 +463,11 @@
     <value>5</value>
   </data>
   <data name="btnMAJImprimante.Location" type="System.Drawing.Point, System.Drawing">
-<<<<<<< HEAD
+
     <value>220, 153</value>
-=======
+
     <value>220, 109</value>
->>>>>>> 7039a5af38d84913513719e01d7b454fb1b751f6
+
   </data>
   <data name="btnMAJImprimante.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 23</value>
