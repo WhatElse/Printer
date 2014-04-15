@@ -142,6 +142,7 @@
             resources.ApplyResources(this.btnMAJImprimante, "btnMAJImprimante");
             this.btnMAJImprimante.Name = "btnMAJImprimante";
             this.btnMAJImprimante.UseVisualStyleBackColor = true;
+            this.btnMAJImprimante.Click += new System.EventHandler(this.btnMAJImprimante_Click);
             // 
             // label2
             // 

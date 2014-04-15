@@ -291,10 +291,14 @@
     <value>12</value>
   </data>
   <data name="SwitchState.Location" type="System.Drawing.Point, System.Drawing">
+<<<<<<< HEAD
     <value>220, 124</value>
+=======
+    <value>220, 138</value>
+>>>>>>> 7039a5af38d84913513719e01d7b454fb1b751f6
   </data>
   <data name="SwitchState.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 23</value>
+    <value>193, 23</value>
   </data>
   <data name="SwitchState.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -459,16 +463,20 @@
     <value>5</value>
   </data>
   <data name="btnMAJImprimante.Location" type="System.Drawing.Point, System.Drawing">
+<<<<<<< HEAD
     <value>220, 153</value>
+=======
+    <value>220, 109</value>
+>>>>>>> 7039a5af38d84913513719e01d7b454fb1b751f6
   </data>
   <data name="btnMAJImprimante.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 23</value>
+    <value>193, 23</value>
   </data>
   <data name="btnMAJImprimante.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
   <data name="btnMAJImprimante.Text" xml:space="preserve">
-    <value>Mettre à jour l'imprimante</value>
+    <value>Mettre à jour le nom de l'imprimante</value>
   </data>
   <data name="&gt;&gt;btnMAJImprimante.Name" xml:space="preserve">
     <value>btnMAJImprimante</value>
