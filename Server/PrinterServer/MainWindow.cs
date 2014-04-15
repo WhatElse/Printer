@@ -64,7 +64,11 @@ namespace PrinterServer
             this.Close();
         }
 
+<<<<<<< HEAD
+        private void vitesseImprimante_TextChanged(object sender, EventArgs e)
+=======
         private void btnMAJImprimante_Click(object sender, EventArgs e)
+>>>>>>> 7039a5af38d84913513719e01d7b454fb1b751f6
         {
 
         }

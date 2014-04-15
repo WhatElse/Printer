@@ -187,6 +187,7 @@
             // 
             resources.ApplyResources(this.vitesseImprimante, "vitesseImprimante");
             this.vitesseImprimante.Name = "vitesseImprimante";
+            this.vitesseImprimante.TextChanged += new System.EventHandler(this.vitesseImprimante_TextChanged);
             // 
             // MainWindow
             // 

@@ -8,3 +8,13 @@ C:\Users\Kamui\Dropbox\EPSI\I4\Projets\Printer\Server\PrinterServer\obj\Debug\Pr
 C:\Users\Kamui\Dropbox\EPSI\I4\Projets\Printer\Server\PrinterServer\obj\Debug\PrinterServer.csproj.GenerateResource.Cache
 C:\Users\Kamui\Dropbox\EPSI\I4\Projets\Printer\Server\PrinterServer\obj\Debug\PrinterServer.exe
 C:\Users\Kamui\Dropbox\EPSI\I4\Projets\Printer\Server\PrinterServer\obj\Debug\PrinterServer.pdb
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\bin\Debug\PrinterServer.exe.config
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\bin\Debug\PrinterServer.exe
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\bin\Debug\PrinterServer.pdb
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\obj\Debug\PrinterServer.csprojResolveAssemblyReference.cache
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\obj\Debug\PrinterServer.ListeClients.resources
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\obj\Debug\PrinterServer.MainWindow.resources
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\obj\Debug\PrinterServer.Properties.Resources.resources
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\obj\Debug\PrinterServer.csproj.GenerateResource.Cache
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\obj\Debug\PrinterServer.exe
+C:\Users\Thomas\Documents\GitHub\Printer\Server\PrinterServer\obj\Debug\PrinterServer.pdb
