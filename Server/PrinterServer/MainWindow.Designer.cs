@@ -36,7 +36,6 @@
             this.lblPrinterName = new System.Windows.Forms.Label();
             this.PrinterName = new System.Windows.Forms.TextBox();
             this.lblPath = new System.Windows.Forms.Label();
-            this.ExplorePath = new System.Windows.Forms.Button();
             this.SwitchState = new System.Windows.Forms.Button();
             this.lblDocuments = new System.Windows.Forms.Label();
             this.DocumentsList = new System.Windows.Forms.ListBox();
@@ -94,12 +93,6 @@
             // 
             resources.ApplyResources(this.lblPath, "lblPath");
             this.lblPath.Name = "lblPath";
-            // 
-            // ExplorePath
-            // 
-            resources.ApplyResources(this.ExplorePath, "ExplorePath");
-            this.ExplorePath.Name = "ExplorePath";
-            this.ExplorePath.UseVisualStyleBackColor = true;
             // 
             // SwitchState
             // 
@@ -192,6 +185,7 @@
             // 
             resources.ApplyResources(this.vitesseImprimante, "vitesseImprimante");
             this.vitesseImprimante.Name = "vitesseImprimante";
+            this.vitesseImprimante.TextChanged += new System.EventHandler(this.vitesseImprimante_TextChanged);
             // 
             // MainWindow
             // 
@@ -209,7 +203,6 @@
             this.Controls.Add(this.DocumentsList);
             this.Controls.Add(this.lblDocuments);
             this.Controls.Add(this.SwitchState);
-            this.Controls.Add(this.ExplorePath);
             this.Controls.Add(this.lblPath);
             this.Controls.Add(this.PrinterName);
             this.Controls.Add(this.lblPrinterName);
@@ -235,7 +228,6 @@
         private System.Windows.Forms.Label lblPrinterName;
         private System.Windows.Forms.TextBox PrinterName;
         private System.Windows.Forms.Label lblPath;
-        private System.Windows.Forms.Button ExplorePath;
         private System.Windows.Forms.Button SwitchState;
         private System.Windows.Forms.Label lblDocuments;
         private System.Windows.Forms.ListBox DocumentsList;

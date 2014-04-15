@@ -138,7 +138,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PrinterList.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>18</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -165,7 +165,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>17</value>
   </data>
   <data name="AddPrinter.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 275</value>
@@ -189,7 +189,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;AddPrinter.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>16</value>
   </data>
   <data name="DeletePrinter.Location" type="System.Drawing.Point, System.Drawing">
     <value>97, 275</value>
@@ -213,7 +213,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DeletePrinter.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>15</value>
   </data>
   <data name="lblPrinterName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -240,7 +240,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPrinterName.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>14</value>
   </data>
   <data name="PrinterName.Location" type="System.Drawing.Point, System.Drawing">
     <value>220, 43</value>
@@ -261,7 +261,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PrinterName.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>13</value>
   </data>
   <data name="lblPath.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -288,34 +288,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPath.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="ExplorePath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 110</value>
-  </data>
-  <data name="ExplorePath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="ExplorePath.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="ExplorePath.Text" xml:space="preserve">
-    <value>Parcourir</value>
-  </data>
-  <data name="&gt;&gt;ExplorePath.Name" xml:space="preserve">
-    <value>ExplorePath</value>
-  </data>
-  <data name="&gt;&gt;ExplorePath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ExplorePath.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ExplorePath.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
   <data name="SwitchState.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 163</value>
+    <value>220, 124</value>
   </data>
   <data name="SwitchState.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 23</value>
@@ -483,7 +459,7 @@
     <value>5</value>
   </data>
   <data name="btnMAJImprimante.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 193</value>
+    <value>220, 153</value>
   </data>
   <data name="btnMAJImprimante.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 23</value>
@@ -604,6 +580,9 @@
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="etatImprimante.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="etatImprimante.Location" type="System.Drawing.Point, System.Drawing">
     <value>220, 83</value>

@@ -63,5 +63,10 @@ namespace PrinterServer
         {
             this.Close();
         }
+
+        private void vitesseImprimante_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
