@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExplorerClient));
             this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.buttonRAZ = new System.Windows.Forms.Button();
             this.checkedListBoxFilePrinter = new System.Windows.Forms.CheckedListBox();
             this.print_button = new System.Windows.Forms.Button();
             this.treeView = new System.Windows.Forms.TreeView();
@@ -40,7 +41,6 @@
             this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastModified = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Path = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.buttonRAZ = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -66,6 +66,18 @@
             this.splitContainer.Size = new System.Drawing.Size(970, 518);
             this.splitContainer.SplitterDistance = 299;
             this.splitContainer.TabIndex = 0;
+            // 
+            // buttonRAZ
+            // 
+            this.buttonRAZ.AutoSize = true;
+            this.buttonRAZ.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonRAZ.Location = new System.Drawing.Point(0, 337);
+            this.buttonRAZ.Name = "buttonRAZ";
+            this.buttonRAZ.Size = new System.Drawing.Size(299, 23);
+            this.buttonRAZ.TabIndex = 3;
+            this.buttonRAZ.Text = "RAZ";
+            this.buttonRAZ.UseVisualStyleBackColor = true;
+            this.buttonRAZ.Click += new System.EventHandler(this.buttonRAZ_Click);
             // 
             // checkedListBoxFilePrinter
             // 
@@ -128,6 +140,7 @@
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
+            this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
             this.listView.Click += new System.EventHandler(this.listView_Click);
             // 
             // Doc
@@ -145,18 +158,6 @@
             // Path
             // 
             this.Path.Text = "Path";
-            // 
-            // buttonRAZ
-            // 
-            this.buttonRAZ.AutoSize = true;
-            this.buttonRAZ.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonRAZ.Location = new System.Drawing.Point(0, 337);
-            this.buttonRAZ.Name = "buttonRAZ";
-            this.buttonRAZ.Size = new System.Drawing.Size(299, 23);
-            this.buttonRAZ.TabIndex = 3;
-            this.buttonRAZ.Text = "RAZ";
-            this.buttonRAZ.UseVisualStyleBackColor = true;
-            this.buttonRAZ.Click += new System.EventHandler(this.buttonRAZ_Click);
             // 
             // ExplorerClient
             // 

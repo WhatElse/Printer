@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Net;
+using System.Net.Sockets; 
 
 namespace PrinterClient
 {
@@ -18,13 +20,47 @@ namespace PrinterClient
         public List<string> pathArray = new List<string>();
         static readonly object verrou = new object();
         static string tmpDirectory = @"../../tmp/";
+        Socket SocketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         public ExplorerClient()
         {
+            
+            connectToServer();
+
+            byte[] buffer = Encoding.ASCII.GetBytes("eh coucou");
+            SocketClient.BeginSend(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(SendCallback), SocketClient);
+
             InitializeComponent();
             deleteAllFilesInTMP();
             PopulateTreeView();
             this.treeView.NodeMouseClick += new TreeNodeMouseClickEventHandler(this.treeView_NodeMouseClick);
+        }
+
+        public void connectToServer()
+        {
+            //string host = "";
+            //host = System.Net.Dns.GetHostName();
+            //IPHostEntry ipEntry = System.Net.Dns.GetHostEntry(host);
+            //IPAddress[] addr = ipEntry.AddressList;
+            //MessageBox.Show(addr[addr.Length-1].ToString());
+            
+                System.Net.IPAddress ipaddress = System.Net.IPAddress.Parse("192.168.2.11");
+                try
+                {
+                    SocketClient.BeginConnect(new IPEndPoint(ipaddress, 15), new AsyncCallback(connexionConnectCallback), SocketClient);
+                }
+                catch
+                {}    
+        }      
+
+        private void SendCallback(IAsyncResult asyncResult)
+        {
+            int send = SocketClient.EndSend(asyncResult);
+        }
+
+        private void connexionConnectCallback(IAsyncResult asyncResult)
+        {
+            SocketClient.EndConnect(asyncResult);
         }
 
 
@@ -185,5 +221,12 @@ namespace PrinterClient
                 File.Copy(checkedItem, tmpDirectory + compteur + name, true);
             }
         }
+
+        private void listView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public EndPoint ipEndPoint { get; set; }
     }
 }
