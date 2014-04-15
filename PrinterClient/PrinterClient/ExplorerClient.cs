@@ -20,15 +20,13 @@ namespace PrinterClient
         public List<string> pathArray = new List<string>();
         static readonly object verrou = new object();
         static string tmpDirectory = @"../../tmp/";
-        Socket SocketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        private Socket SocketClient;
+        private byte[] buffer;
 
         public ExplorerClient()
         {
-            
+            this.buffer = new byte[100];
             connectToServer();
-
-            byte[] buffer = Encoding.ASCII.GetBytes("eh coucou");
-            SocketClient.BeginSend(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(SendCallback), SocketClient);
 
             InitializeComponent();
             deleteAllFilesInTMP();
@@ -38,31 +36,52 @@ namespace PrinterClient
 
         public void connectToServer()
         {
-            //string host = "";
-            //host = System.Net.Dns.GetHostName();
-            //IPHostEntry ipEntry = System.Net.Dns.GetHostEntry(host);
-            //IPAddress[] addr = ipEntry.AddressList;
-            //MessageBox.Show(addr[addr.Length-1].ToString());
-            
-                System.Net.IPAddress ipaddress = System.Net.IPAddress.Parse("192.168.2.11");
-                try
-                {
-                    SocketClient.BeginConnect(new IPEndPoint(ipaddress, 15), new AsyncCallback(connexionConnectCallback), SocketClient);
-                }
-                catch
-                {}    
+            if (this.SocketClient == null || !this.SocketClient.Connected)
+            {
+                this.SocketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+                System.Net.IPAddress ipaddress = System.Net.IPAddress.Parse("192.168.1.37");
+                this.SocketClient.BeginConnect(new IPEndPoint(ipaddress, 15), new AsyncCallback(ConnectCallback), this.SocketClient);
+            }
+            else
+            {
+                MessageBox.Show("Désolé le serveur est down (else)");
+            }
         }      
 
-        private void SendCallback(IAsyncResult asyncResult)
-        {
-            int send = SocketClient.EndSend(asyncResult);
+        private void ConnectCallback(IAsyncResult asyncResult)
+		{
+            try
+            {
+                Socket socket = (Socket)asyncResult.AsyncState;
+                this.SocketClient = socket;
+                socket.EndConnect(asyncResult);
+                MessageBox.Show("le client est co");
+                this.buffer = Encoding.ASCII.GetBytes("ZYAII");
+               
+                this.SocketClient.BeginSend(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallback), this.SocketClient);
+            }
+            catch
+            {
+                MessageBox.Show("Désolé le serveur est down");
+            }
         }
 
-        private void connexionConnectCallback(IAsyncResult asyncResult)
-        {
-            SocketClient.EndConnect(asyncResult);
-        }
+        private void ReceiveCallback(IAsyncResult asyncResult)
+		{
+            Socket socket = (Socket)asyncResult.AsyncState;
+            int read = socket.EndReceive(asyncResult);
+            if( read > 0 )
+			{
+                MessageBox.Show("Message envoyé");
+                Buffer.SetByte(this.buffer, 0, 0);
+            }
 
+            if( read == 0)
+            {
+                MessageBox.Show("Message pas envoyé");
+			}
+        }
 
         public void deleteAllFilesInTMP() 
         {
