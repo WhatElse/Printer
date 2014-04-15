@@ -14,23 +14,54 @@ namespace PrinterServer
 {
     public partial class MainWindow : Form
     {
-        private SocketPermission permission;
-        private Socket listener;
+        private byte[] buffer;
+        private Socket SocketServer;
+        private Socket SocketClient;
+
         public MainWindow()
         {
             InitializeComponent();
+            this.buffer = new byte[100];
+            OpenSocket();
+        }
 
-            IPHostEntry ipHost = Dns.GetHostEntry("");
-            IPAddress ipAddr = ipHost.AddressList[0];
-            IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, 3333);
+        public void OpenSocket()
+        {
+            this.SocketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            System.Net.IPAddress ipadress = System.Net.IPAddress.Parse("192.168.1.37");
+            this.SocketServer.Bind(new IPEndPoint(ipadress, 15));
+            this.SocketServer.Listen(1);
+            this.SocketServer.BeginAccept(new AsyncCallback(this.connexionAcceptCallback), this.SocketServer);
+        }
 
-            this.permission = new SocketPermission(NetworkAccess.Accept, TransportType.Tcp, "", SocketPermission.AllPorts);
-            this.listener = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+        private void ReceiveMessageCallback(IAsyncResult asyncResult)
+        {
+            Socket socket = (Socket)asyncResult.AsyncState;
+            int read = socket.EndReceive(asyncResult);
+            if (read > 0)
+            {
+                MessageBox.Show("Client dit :" + Encoding.ASCII.GetString(this.buffer));
+                Buffer.SetByte(this.buffer, 0, 0);
+                try
+                {
+                    this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient);
+                }
+                catch
+                {
+                    MessageBox.Show("Le client s'est déconnecté");
+                }
+            }
+        }
 
-            listener.Bind(ipEndPoint);
-            listener.Listen(100);
-
-            // AsyncCallback aCallback = new AsyncCallback(...);
+        private void connexionAcceptCallback(IAsyncResult asyncResult)
+        {
+            Socket socket = (Socket)asyncResult.AsyncState;
+            if (socket.Handle.ToInt32() != -1)
+            {
+                this.SocketClient = socket.EndAccept(asyncResult);
+                MessageBox.Show("Un client s'est connecté !");
+                this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient);
+            }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
