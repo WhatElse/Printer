@@ -63,5 +63,10 @@ namespace PrinterServer
         {
             this.Close();
         }
+
+        private void btnMAJImprimante_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
