@@ -22,10 +22,13 @@ namespace PrinterClient
         static string tmpDirectory = @"../../tmp/";
         private Socket SocketClient;
         private byte[] buffer;
+        
 
         public ExplorerClient()
         {
             this.buffer = new byte[100];
+            GlobalVariables.ipServeur = "192.168.1.1";
+
             connectToServer();
 
             InitializeComponent();
@@ -40,7 +43,7 @@ namespace PrinterClient
             {
                 this.SocketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-                System.Net.IPAddress ipaddress = System.Net.IPAddress.Parse("192.168.1.37");
+                System.Net.IPAddress ipaddress = System.Net.IPAddress.Parse(GlobalVariables.ipServeur);
                 this.SocketClient.BeginConnect(new IPEndPoint(ipaddress, 15), new AsyncCallback(ConnectCallback), this.SocketClient);
             }
             else
@@ -247,5 +250,11 @@ namespace PrinterClient
         }
 
         public EndPoint ipEndPoint { get; set; }
+
+        private void buttonIPServeur_Click(object sender, EventArgs e)
+        {
+            Form FormIPServeur = new FormIPServeur();
+            FormIPServeur.Show();
+        }
     }
 }

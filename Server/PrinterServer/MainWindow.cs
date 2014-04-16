@@ -17,6 +17,8 @@ namespace PrinterServer
         private byte[] buffer;
         private Socket SocketServer;
         private Socket SocketClient;
+        private static string MyComputerName = Dns.GetHostName();
+        private static string MyIP = Dns.GetHostByName(MyComputerName).AddressList[0].ToString();
 
         public MainWindow()
         {
@@ -28,8 +30,8 @@ namespace PrinterServer
         public void OpenSocket()
         {
             this.SocketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            System.Net.IPAddress ipadress = System.Net.IPAddress.Parse("192.168.1.37");
-            this.SocketServer.Bind(new IPEndPoint(ipadress, 15));
+            System.Net.IPAddress ipAddress = System.Net.IPAddress.Parse(MyIP);
+            this.SocketServer.Bind(new IPEndPoint(ipAddress, 15));
             this.SocketServer.Listen(1);
             this.SocketServer.BeginAccept(new AsyncCallback(this.connexionAcceptCallback), this.SocketServer);
         }

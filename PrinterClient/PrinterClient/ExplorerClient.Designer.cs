@@ -41,6 +41,7 @@
             this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastModified = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Path = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonIPServeur = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -55,6 +56,7 @@
             // 
             // splitContainer.Panel1
             // 
+            this.splitContainer.Panel1.Controls.Add(this.buttonIPServeur);
             this.splitContainer.Panel1.Controls.Add(this.buttonRAZ);
             this.splitContainer.Panel1.Controls.Add(this.checkedListBoxFilePrinter);
             this.splitContainer.Panel1.Controls.Add(this.print_button);
@@ -159,6 +161,17 @@
             // 
             this.Path.Text = "Path";
             // 
+            // buttonIPServeur
+            // 
+            this.buttonIPServeur.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonIPServeur.Location = new System.Drawing.Point(221, 308);
+            this.buttonIPServeur.Name = "buttonIPServeur";
+            this.buttonIPServeur.Size = new System.Drawing.Size(75, 23);
+            this.buttonIPServeur.TabIndex = 1;
+            this.buttonIPServeur.Text = "IP Serveur";
+            this.buttonIPServeur.UseVisualStyleBackColor = true;
+            this.buttonIPServeur.Click += new System.EventHandler(this.buttonIPServeur_Click);
+            // 
             // ExplorerClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,6 +202,7 @@
         private System.Windows.Forms.ColumnHeader Path;
         private System.Windows.Forms.CheckedListBox checkedListBoxFilePrinter;
         private System.Windows.Forms.Button buttonRAZ;
+        private System.Windows.Forms.Button buttonIPServeur;
     }
 }
 

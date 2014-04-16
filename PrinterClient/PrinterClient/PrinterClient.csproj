@@ -44,16 +44,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalVariables.cs" />
     <Compile Include="ExplorerClient.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ExplorerClient.Designer.cs">
       <DependentUpon>ExplorerClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="IPServeur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IPServeur.Designer.cs">
+      <DependentUpon>IPServeur.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ExplorerClient.resx">
       <DependentUpon>ExplorerClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IPServeur.resx">
+      <DependentUpon>IPServeur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
