@@ -122,7 +122,7 @@
     <value>15, 43</value>
   </data>
   <data name="PrinterList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 225</value>
+    <value>157, 290</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="PrinterList.TabIndex" type="System.Int32, mscorlib">
@@ -138,7 +138,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PrinterList.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>20</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -165,13 +165,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="AddPrinter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 275</value>
+    <value>217, 151</value>
   </data>
   <data name="AddPrinter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>154, 23</value>
   </data>
   <data name="AddPrinter.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -189,13 +189,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;AddPrinter.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="DeletePrinter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 275</value>
+    <value>395, 152</value>
   </data>
   <data name="DeletePrinter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>151, 23</value>
   </data>
   <data name="DeletePrinter.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -213,7 +213,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DeletePrinter.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="lblPrinterName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -240,7 +240,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPrinterName.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="PrinterName.Location" type="System.Drawing.Point, System.Drawing">
     <value>220, 43</value>
@@ -261,7 +261,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PrinterName.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="lblPath.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -288,35 +288,34 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPath.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
-  <data name="SwitchState.Location" type="System.Drawing.Point, System.Drawing">
-
-    <value>220, 124</value>
-
-    <value>220, 138</value>
-
+  <metadata name="btnPauseImpression.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnPauseImpression.Location" type="System.Drawing.Point, System.Drawing">
+    <value>395, 180</value>
   </data>
-  <data name="SwitchState.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 23</value>
+  <data name="btnPauseImpression.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 23</value>
   </data>
-  <data name="SwitchState.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnPauseImpression.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="SwitchState.Text" xml:space="preserve">
+  <data name="btnPauseImpression.Text" xml:space="preserve">
     <value>Mettre en pause l'impression</value>
   </data>
-  <data name="&gt;&gt;SwitchState.Name" xml:space="preserve">
-    <value>SwitchState</value>
+  <data name="&gt;&gt;btnPauseImpression.Name" xml:space="preserve">
+    <value>btnPauseImpression</value>
   </data>
-  <data name="&gt;&gt;SwitchState.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnPauseImpression.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;SwitchState.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnPauseImpression.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;SwitchState.ZOrder" xml:space="preserve">
-    <value>11</value>
+  <data name="&gt;&gt;btnPauseImpression.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
   <data name="lblDocuments.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -343,7 +342,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblDocuments.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="DocumentsList.Location" type="System.Drawing.Point, System.Drawing">
     <value>569, 43</value>
@@ -364,7 +363,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DocumentsList.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="PauseDocument.Location" type="System.Drawing.Point, System.Drawing">
     <value>569, 275</value>
@@ -388,7 +387,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PauseDocument.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="DeleteDocument.Location" type="System.Drawing.Point, System.Drawing">
     <value>569, 305</value>
@@ -412,7 +411,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DeleteDocument.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="OpenClientsWindow.Location" type="System.Drawing.Point, System.Drawing">
     <value>220, 347</value>
@@ -436,7 +435,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;OpenClientsWindow.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="btnQuitter.Location" type="System.Drawing.Point, System.Drawing">
     <value>384, 347</value>
@@ -460,23 +459,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnQuitter.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="btnMAJImprimante.Location" type="System.Drawing.Point, System.Drawing">
-
-    <value>220, 153</value>
-
-    <value>220, 109</value>
-
+    <value>217, 180</value>
   </data>
   <data name="btnMAJImprimante.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 23</value>
+    <value>157, 23</value>
   </data>
   <data name="btnMAJImprimante.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
   <data name="btnMAJImprimante.Text" xml:space="preserve">
-    <value>Mettre à jour le nom de l'imprimante</value>
+    <value>Mettre à jour l'imprimante</value>
   </data>
   <data name="&gt;&gt;btnMAJImprimante.Name" xml:space="preserve">
     <value>btnMAJImprimante</value>
@@ -488,7 +483,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnMAJImprimante.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -587,8 +582,11 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
+  <metadata name="etatImprimante.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="etatImprimante.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -611,7 +609,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;etatImprimante.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -638,7 +636,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="vitesseImprimante.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -662,6 +660,58 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;vitesseImprimante.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>217, 106</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 13</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Adresse IP</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="IPAdresse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>220, 122</value>
+  </data>
+  <data name="IPAdresse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 20</value>
+  </data>
+  <data name="IPAdresse.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;IPAdresse.Name" xml:space="preserve">
+    <value>IPAdresse</value>
+  </data>
+  <data name="&gt;&gt;IPAdresse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;IPAdresse.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;IPAdresse.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

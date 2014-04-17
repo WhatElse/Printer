@@ -68,7 +68,7 @@ namespace PrinterServer
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -110,7 +110,18 @@ namespace PrinterServer
         {
             Random random = new Random();
             int alea = random.Next(1,5);
-            Printer newPrinter = new Printer("", "En ligne", alea, true);
+            vitesseImprimante.Text = alea.ToString();
+            
+            Printer newPrinter = new Printer(alea, PrinterName.Text.ToString(), IPAdresse.Text.ToString(), 1, false);
+            etatImprimante.Text = newPrinter.getStateInfo(newPrinter.getState());
+
+            PrinterList.Items.Add(IPAdresse.Text.ToString()+" - "+PrinterName.Text.ToString());
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

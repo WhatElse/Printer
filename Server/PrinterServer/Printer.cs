@@ -9,16 +9,18 @@ namespace PrinterServer
     class Printer
     {
         private String name;
-        private String state;
+        private int state;
         private int speed;
         private Boolean running;
+        private string ip;
 
-        public Printer(String name = "Noname", String state = "En ligne", int speed = 1, Boolean visible = true)
+        public Printer(int speed, String name, string ip, int state = 1, Boolean running = true)
         {
             this.name = name;
             this.state = state;
             this.speed = speed;
-            this.running = true;
+            this.running = running;
+            this.ip = ip;
         }
 
         public String getName()
@@ -31,12 +33,19 @@ namespace PrinterServer
             this.name = name;
         }
 
-        public String getState()
+        public int getState()
         {
             return this.state;
         }
 
-        public void setState(String state)
+        public string getStateInfo(int state)
+        {
+            if (state == 0) return "Hors ligne";
+            if (state == 1) return "En ligne";
+            return "En erreur";
+        }
+
+        public void setState(int state)
         {
             this.state = state;
         }
@@ -59,6 +68,16 @@ namespace PrinterServer
         public Boolean print()
         {
             return false;
+        }
+
+        public string getIP()
+        {
+            return this.ip;
+        }
+
+        public void setIP(string ip)
+        {
+            this.ip = ip;
         }
     }
 }
