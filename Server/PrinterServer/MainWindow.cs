@@ -17,6 +17,7 @@ namespace PrinterServer
         private byte[] buffer;
         private Socket SocketServer;
         private Socket SocketClient;
+        private List<Printer> printers;
         private static string MyComputerName = Dns.GetHostName();
         private static string MyIP = Dns.GetHostByName(MyComputerName).AddressList[0].ToString();
 
@@ -24,6 +25,7 @@ namespace PrinterServer
         {
             InitializeComponent();
             this.buffer = new byte[100];
+            this.printers = new List<Printer>();
             OpenSocket();
         }
 
@@ -68,7 +70,12 @@ namespace PrinterServer
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            Printer printer = selectedPrinter();
+            IPAdresse.Text = printer.getIP();
+            vitesseImprimante.Text = printer.getSpeed().ToString();
+            PrinterName.Text = printer.getName();
+            etatImprimante.Text = printer.getStateInfo(printer.getState());
+            changeButtonPauseImpression(printer);
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -103,25 +110,88 @@ namespace PrinterServer
         }
         private void btnMAJImprimante_Click(object sender, EventArgs e)
         {
-
+            Printer printer = selectedPrinter();
+            printer.setIP(IPAdresse.Text);
+            printer.setName(PrinterName.Text);
         }
 
         private void AddPrinter_Click(object sender, EventArgs e)
         {
-            Random random = new Random();
-            int alea = random.Next(1,5);
-            vitesseImprimante.Text = alea.ToString();
-            
-            Printer newPrinter = new Printer(alea, PrinterName.Text.ToString(), IPAdresse.Text.ToString(), 1, false);
-            etatImprimante.Text = newPrinter.getStateInfo(newPrinter.getState());
+            bool verif = false;
+            string ip;
 
-            PrinterList.Items.Add(IPAdresse.Text.ToString()+" - "+PrinterName.Text.ToString());
+            //verifie si une ip n'est pas déjà ajoutée à la liste
+            foreach (string item in PrinterList.Items)
+            {
+                ip = item.Split(' ')[0];
+                if (ip == IPAdresse.Text.ToString()) verif = true;
+            }
 
+            if (!verif)
+            {
+                Random random = new Random();
+                int alea = random.Next(1, 5);
+                vitesseImprimante.Text = alea.ToString();
+
+                Printer newPrinter = new Printer(alea, PrinterName.Text.ToString(), IPAdresse.Text.ToString(), 1, false);
+                etatImprimante.Text = newPrinter.getStateInfo(newPrinter.getState());
+
+                PrinterList.Items.Add(IPAdresse.Text.ToString() + " - " + PrinterName.Text.ToString());
+                this.printers.Add(newPrinter);
+                if (PrinterList.Items.Count != 0) PrinterList.SelectedIndex = PrinterList.Items.Count - 1;
+            }
+            else
+            {
+                MessageBox.Show("Cette imprimante est déjà ajoutée");
+            }
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void btnPauseImpression_Click(object sender, EventArgs e)
+        {
+            Printer printer = selectedPrinter();
+            if (printer.getState() == 1) printer.setState(0);
+            else printer.setState(1);
+            etatImprimante.Text = printer.getStateInfo(printer.getState());
+            changeButtonPauseImpression(printer);
+        }
+
+        private Printer selectedPrinter()
+        {
+            try
+            {
+                string printerSelected = PrinterList.SelectedItem.ToString();
+
+                foreach (Printer printer in printers)
+                {
+                    if (printer.getIP().ToString() == printerSelected.Split(' ')[0])
+                    {
+                        return printer;
+                    }
+                }
+            }
+            catch { }
+
+                return printers.First();
+        }
+
+        private void changeButtonPauseImpression(Printer printer)
+        {
+            if (printer.getState() == 1) btnPauseImpression.Text = "Mettre Hors ligne";
+            if (printer.getState() == 0) btnPauseImpression.Text = "Mettre En ligne";
+        }
+
+        private void DeletePrinter_Click(object sender, EventArgs e)
+        {
+            Printer printer = selectedPrinter();
+            printers.Remove(printer);
+            PrinterList.Items.Remove(PrinterList.SelectedItem);
+            PrinterList.SelectedIndex = PrinterList.Items.Count - 1;
+        }
+
     }
 }

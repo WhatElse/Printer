@@ -303,7 +303,7 @@
     <value>10</value>
   </data>
   <data name="btnPauseImpression.Text" xml:space="preserve">
-    <value>Mettre en pause l'impression</value>
+    <value>Mettre Hors Ligne</value>
   </data>
   <data name="&gt;&gt;btnPauseImpression.Name" xml:space="preserve">
     <value>btnPauseImpression</value>

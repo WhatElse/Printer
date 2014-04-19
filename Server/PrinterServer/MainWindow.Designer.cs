@@ -81,6 +81,7 @@
             resources.ApplyResources(this.DeletePrinter, "DeletePrinter");
             this.DeletePrinter.Name = "DeletePrinter";
             this.DeletePrinter.UseVisualStyleBackColor = true;
+            this.DeletePrinter.Click += new System.EventHandler(this.DeletePrinter_Click);
             // 
             // lblPrinterName
             // 
@@ -102,6 +103,7 @@
             resources.ApplyResources(this.btnPauseImpression, "btnPauseImpression");
             this.btnPauseImpression.Name = "btnPauseImpression";
             this.btnPauseImpression.UseVisualStyleBackColor = true;
+            this.btnPauseImpression.Click += new System.EventHandler(this.btnPauseImpression_Click);
             // 
             // lblDocuments
             // 
