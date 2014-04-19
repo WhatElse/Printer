@@ -148,16 +148,23 @@ namespace PrinterServer
             {
                 if (PrinterName.Text != "" && IPAdresse.Text != "")
                 {
-                    Random random = new Random();
-                    int alea = random.Next(1, 5);
-                    vitesseImprimante.Text = alea.ToString();
+                    if (verifierUneIp(IPAdresse.Text.ToString()))
+                    {
+                        Random random = new Random();
+                        int alea = random.Next(1, 5);
+                        vitesseImprimante.Text = alea.ToString();
 
-                    Printer newPrinter = new Printer(alea, PrinterName.Text.ToString(), IPAdresse.Text.ToString(), 1, false);
-                    etatImprimante.Text = newPrinter.getStateInfo(newPrinter.getState());
+                        Printer newPrinter = new Printer(alea, PrinterName.Text.ToString(), IPAdresse.Text.ToString(), 1, false);
+                        etatImprimante.Text = newPrinter.getStateInfo(newPrinter.getState());
 
-                    PrinterList.Items.Add(IPAdresse.Text.ToString() + " - " + PrinterName.Text.ToString());
-                    this.printers.Add(newPrinter);
-                    if (PrinterList.Items.Count != 0) PrinterList.SelectedIndex = PrinterList.Items.Count - 1;
+                        PrinterList.Items.Add(IPAdresse.Text.ToString() + " - " + PrinterName.Text.ToString());
+                        this.printers.Add(newPrinter);
+                        if (PrinterList.Items.Count != 0) PrinterList.SelectedIndex = PrinterList.Items.Count - 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show("L'adresse IP indiqué est incorrect. Format : 123.123.123.123");
+                    }
                 }
                 else
                 {
@@ -231,5 +238,23 @@ namespace PrinterServer
             }
         }
 
+        private bool verifierUneIp(string ip)
+        {
+            IPAddress address;
+            if (IPAddress.TryParse(ip, out address))
+            {
+                switch (address.AddressFamily)
+                {
+                    case System.Net.Sockets.AddressFamily.InterNetwork:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
