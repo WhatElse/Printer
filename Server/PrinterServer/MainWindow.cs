@@ -70,12 +70,22 @@ namespace PrinterServer
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Printer printer = selectedPrinter();
-            IPAdresse.Text = printer.getIP();
-            vitesseImprimante.Text = printer.getSpeed().ToString();
-            PrinterName.Text = printer.getName();
-            etatImprimante.Text = printer.getStateInfo(printer.getState());
-            changeButtonPauseImpression(printer);
+            if (PrinterList.Items.Count != 0)
+            {
+                Printer printer = selectedPrinter();
+                IPAdresse.Text = printer.getIP();
+                vitesseImprimante.Text = printer.getSpeed().ToString();
+                PrinterName.Text = printer.getName();
+                etatImprimante.Text = printer.getStateInfo(printer.getState());
+                changeButtonPauseImpression(printer);
+            }
+            else
+            {
+                IPAdresse.Text = "";
+                vitesseImprimante.Text = "";
+                PrinterName.Text = "";
+                etatImprimante.Text = "";
+            }
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -110,9 +120,16 @@ namespace PrinterServer
         }
         private void btnMAJImprimante_Click(object sender, EventArgs e)
         {
-            Printer printer = selectedPrinter();
-            printer.setIP(IPAdresse.Text);
-            printer.setName(PrinterName.Text);
+            if (PrinterList.Items.Count != 0)
+            {
+                Printer printer = selectedPrinter();
+                printer.setIP(IPAdresse.Text);
+                printer.setName(PrinterName.Text);
+            }
+            else
+            {
+                MessageBox.Show("Veuillez selectionner une imprimante");
+            }
         }
 
         private void AddPrinter_Click(object sender, EventArgs e)
@@ -129,16 +146,23 @@ namespace PrinterServer
 
             if (!verif)
             {
-                Random random = new Random();
-                int alea = random.Next(1, 5);
-                vitesseImprimante.Text = alea.ToString();
+                if (PrinterName.Text != "" && IPAdresse.Text != "")
+                {
+                    Random random = new Random();
+                    int alea = random.Next(1, 5);
+                    vitesseImprimante.Text = alea.ToString();
 
-                Printer newPrinter = new Printer(alea, PrinterName.Text.ToString(), IPAdresse.Text.ToString(), 1, false);
-                etatImprimante.Text = newPrinter.getStateInfo(newPrinter.getState());
+                    Printer newPrinter = new Printer(alea, PrinterName.Text.ToString(), IPAdresse.Text.ToString(), 1, false);
+                    etatImprimante.Text = newPrinter.getStateInfo(newPrinter.getState());
 
-                PrinterList.Items.Add(IPAdresse.Text.ToString() + " - " + PrinterName.Text.ToString());
-                this.printers.Add(newPrinter);
-                if (PrinterList.Items.Count != 0) PrinterList.SelectedIndex = PrinterList.Items.Count - 1;
+                    PrinterList.Items.Add(IPAdresse.Text.ToString() + " - " + PrinterName.Text.ToString());
+                    this.printers.Add(newPrinter);
+                    if (PrinterList.Items.Count != 0) PrinterList.SelectedIndex = PrinterList.Items.Count - 1;
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez renseigner le nom et l'adresse IP de l'imprimante");
+                }
             }
             else
             {
@@ -153,11 +177,18 @@ namespace PrinterServer
 
         private void btnPauseImpression_Click(object sender, EventArgs e)
         {
-            Printer printer = selectedPrinter();
-            if (printer.getState() == 1) printer.setState(0);
-            else printer.setState(1);
-            etatImprimante.Text = printer.getStateInfo(printer.getState());
-            changeButtonPauseImpression(printer);
+            if (PrinterList.Items.Count != 0)
+            {
+                Printer printer = selectedPrinter();
+                if (printer.getState() == 1) printer.setState(0);
+                else printer.setState(1);
+                etatImprimante.Text = printer.getStateInfo(printer.getState());
+                changeButtonPauseImpression(printer);
+            }
+            else
+            {
+                MessageBox.Show("Veuillez selectionner une imprimante");
+            }
         }
 
         private Printer selectedPrinter()
@@ -187,10 +218,17 @@ namespace PrinterServer
 
         private void DeletePrinter_Click(object sender, EventArgs e)
         {
-            Printer printer = selectedPrinter();
-            printers.Remove(printer);
-            PrinterList.Items.Remove(PrinterList.SelectedItem);
-            PrinterList.SelectedIndex = PrinterList.Items.Count - 1;
+            if (PrinterList.Items.Count != 0)
+            {
+                Printer printer = selectedPrinter();
+                printers.Remove(printer);
+                PrinterList.Items.Remove(PrinterList.SelectedItem);
+                PrinterList.SelectedIndex = PrinterList.Items.Count - 1;
+            }
+            else
+            {
+                MessageBox.Show("Aucune imprimante enregistrée");
+            }
         }
 
     }
