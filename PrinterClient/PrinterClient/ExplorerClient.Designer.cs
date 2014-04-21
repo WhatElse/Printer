@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExplorerClient));
             this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.buttonIPServeur = new System.Windows.Forms.Button();
             this.buttonRAZ = new System.Windows.Forms.Button();
             this.checkedListBoxFilePrinter = new System.Windows.Forms.CheckedListBox();
             this.print_button = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@
             this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastModified = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Path = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.buttonIPServeur = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -68,6 +68,17 @@
             this.splitContainer.Size = new System.Drawing.Size(970, 518);
             this.splitContainer.SplitterDistance = 299;
             this.splitContainer.TabIndex = 0;
+            // 
+            // buttonIPServeur
+            // 
+            this.buttonIPServeur.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonIPServeur.Location = new System.Drawing.Point(221, 308);
+            this.buttonIPServeur.Name = "buttonIPServeur";
+            this.buttonIPServeur.Size = new System.Drawing.Size(75, 23);
+            this.buttonIPServeur.TabIndex = 1;
+            this.buttonIPServeur.Text = "IP Serveur";
+            this.buttonIPServeur.UseVisualStyleBackColor = true;
+            this.buttonIPServeur.Click += new System.EventHandler(this.buttonIPServeur_Click);
             // 
             // buttonRAZ
             // 
@@ -161,17 +172,6 @@
             // 
             this.Path.Text = "Path";
             // 
-            // buttonIPServeur
-            // 
-            this.buttonIPServeur.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonIPServeur.Location = new System.Drawing.Point(221, 308);
-            this.buttonIPServeur.Name = "buttonIPServeur";
-            this.buttonIPServeur.Size = new System.Drawing.Size(75, 23);
-            this.buttonIPServeur.TabIndex = 1;
-            this.buttonIPServeur.Text = "IP Serveur";
-            this.buttonIPServeur.UseVisualStyleBackColor = true;
-            this.buttonIPServeur.Click += new System.EventHandler(this.buttonIPServeur_Click);
-            // 
             // ExplorerClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -180,6 +180,7 @@
             this.Controls.Add(this.splitContainer);
             this.Name = "ExplorerClient";
             this.Text = "ExplorerClient";
+            this.Load += new System.EventHandler(this.ExplorerClient_Load);
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel1.PerformLayout();
             this.splitContainer.Panel2.ResumeLayout(false);

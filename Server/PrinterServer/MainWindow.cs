@@ -18,14 +18,18 @@ namespace PrinterServer
         private Socket SocketServer;
         private Socket SocketClient;
         private List<Printer> printers;
+        public static ListeClients liste = new ListeClients();
         private static string MyComputerName = Dns.GetHostName();
         private static string MyIP = Dns.GetHostByName(MyComputerName).AddressList[0].ToString();
+        public IPEndPoint remoteIpEndPoint;
 
         public MainWindow()
         {
             InitializeComponent();
+
             this.buffer = new byte[100];
             this.printers = new List<Printer>();
+
             OpenSocket();
         }
 
@@ -40,20 +44,24 @@ namespace PrinterServer
 
         private void ReceiveMessageCallback(IAsyncResult asyncResult)
         {
-            Socket socket = (Socket)asyncResult.AsyncState;
-            int read = socket.EndReceive(asyncResult);
-            if (read > 0)
+            try
             {
-                MessageBox.Show("Client dit :" + Encoding.ASCII.GetString(this.buffer));
-                Buffer.SetByte(this.buffer, 0, 0);
-                try
+                Socket socket = (Socket)asyncResult.AsyncState;
+                int read = socket.EndReceive(asyncResult);
+                if (read > 0)
                 {
-                    this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient);
+                    MessageBox.Show("Client dit :" + Encoding.ASCII.GetString(this.buffer));
+                    Buffer.SetByte(this.buffer, 0, 0);
+                
+                        this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient);
                 }
-                catch
-                {
-                    MessageBox.Show("Le client s'est déconnecté");
-                }
+            }
+            catch
+            {
+                //suppression du client de la liste des clientsCo
+                //remoteIpEndPoint = this.SocketClient.RemoteEndPoint as IPEndPoint;
+                //liste.DeleteClient(remoteIpEndPoint.ToString());
+                MessageBox.Show("Le client s'est déconnecté");
             }
         }
 
@@ -64,6 +72,11 @@ namespace PrinterServer
             {
                 this.SocketClient = socket.EndAccept(asyncResult);
                 MessageBox.Show("Un client s'est connecté !");
+                
+                //ajout du client à la liste des clientsCo
+                //remoteIpEndPoint = this.SocketClient.RemoteEndPoint as IPEndPoint;
+                //liste.AjoutClient(remoteIpEndPoint.ToString());
+
                 this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient);
             }
         }
@@ -105,7 +118,6 @@ namespace PrinterServer
 
         private void OpenClientsWindow_Click(object sender, EventArgs e)
         {
-            ListeClients liste = new ListeClients();
             liste.Show();
         }
 
@@ -255,6 +267,11 @@ namespace PrinterServer
             {
                 return false;
             }
+        }
+
+        private void DocumentsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

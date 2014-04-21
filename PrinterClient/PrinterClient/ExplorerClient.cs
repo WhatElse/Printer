@@ -27,7 +27,7 @@ namespace PrinterClient
         public ExplorerClient()
         {
             this.buffer = new byte[100];
-            GlobalVariables.ipServeur = "192.168.1.1";
+            GlobalVariables.ipServeur = "192.168.1.39";
 
             connectToServer();
 
@@ -255,6 +255,11 @@ namespace PrinterClient
         {
             Form FormIPServeur = new FormIPServeur();
             FormIPServeur.Show();
+        }
+
+        private void ExplorerClient_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

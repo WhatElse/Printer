@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listeClientsConnectes = new System.Windows.Forms.ListBox();
+            this.listClients = new System.Windows.Forms.ListBox();
             this.btnFermer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listeClientsConnectes
+            // listClients
             // 
-            this.listeClientsConnectes.FormattingEnabled = true;
-            this.listeClientsConnectes.Location = new System.Drawing.Point(13, 13);
-            this.listeClientsConnectes.Name = "listeClientsConnectes";
-            this.listeClientsConnectes.Size = new System.Drawing.Size(259, 199);
-            this.listeClientsConnectes.TabIndex = 0;
+            this.listClients.FormattingEnabled = true;
+            this.listClients.Location = new System.Drawing.Point(13, 13);
+            this.listClients.Name = "listClients";
+            this.listClients.Size = new System.Drawing.Size(259, 199);
+            this.listClients.TabIndex = 0;
+            this.listClients.SelectedIndexChanged += new System.EventHandler(this.listeClientsConnectes_SelectedIndexChanged);
             // 
             // btnFermer
             // 
@@ -56,16 +57,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.btnFermer);
-            this.Controls.Add(this.listeClientsConnectes);
+            this.Controls.Add(this.listClients);
             this.Name = "ListeClients";
             this.Text = "ListeClients";
+            this.Load += new System.EventHandler(this.ListeClients_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox listeClientsConnectes;
+        private System.Windows.Forms.ListBox listClients;
         private System.Windows.Forms.Button btnFermer;
     }
 }

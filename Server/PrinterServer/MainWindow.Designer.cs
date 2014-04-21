@@ -115,6 +115,7 @@
             this.DocumentsList.FormattingEnabled = true;
             resources.ApplyResources(this.DocumentsList, "DocumentsList");
             this.DocumentsList.Name = "DocumentsList";
+            this.DocumentsList.SelectedIndexChanged += new System.EventHandler(this.DocumentsList_SelectedIndexChanged);
             // 
             // PauseDocument
             // 

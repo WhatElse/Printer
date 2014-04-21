@@ -19,7 +19,27 @@ namespace PrinterServer
 
         private void btnFermer_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
+        }
+
+        private void listeClientsConnectes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ListeClients_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void AjoutClient(string ip)
+        {
+            listClients.Items.Add(ip.ToString());
+        }
+
+        public void DeleteClient(string ip)
+        {
+            listClients.Items.Remove(ip);
         }
     }
 }
