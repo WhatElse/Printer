@@ -27,7 +27,7 @@ namespace PrinterClient
         public ExplorerClient()
         {
             this.buffer = new byte[100];
-            GlobalVariables.ipServeur = "192.168.1.1";
+            GlobalVariables.ipServeur = "192.168.1.39";
 
             connectToServer();
 
@@ -61,6 +61,22 @@ namespace PrinterClient
                 socket.EndConnect(asyncResult);
                 MessageBox.Show("le client est co");
                 this.buffer = Encoding.ASCII.GetBytes("ZYAII");
+
+                string fileName = "TESTFILE.txt";
+                string filePath = @"../../";
+
+                /////TEST ENVOI DU FILE
+                    byte[] fileNameByte = Encoding.ASCII.GetBytes(fileName);
+                    byte[] fileData = File.ReadAllBytes(filePath + fileName);
+                    byte[] clientData = new byte[4 + fileNameByte.Length + fileData.Length];
+                    byte[] fileNameLen = BitConverter.GetBytes(fileNameByte.Length);
+                    fileNameLen.CopyTo(clientData, 0);
+                    fileNameByte.CopyTo(clientData, 4);
+                    fileData.CopyTo(clientData, 4 + fileNameByte.Length);
+
+                    this.buffer = clientData;
+                 
+                /////FIN DU TEST
                
                 this.SocketClient.BeginSend(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallback), this.SocketClient);
             }

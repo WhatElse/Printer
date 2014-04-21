@@ -39,7 +39,6 @@
             this.btnPauseImpression = new System.Windows.Forms.Button();
             this.lblDocuments = new System.Windows.Forms.Label();
             this.DocumentsList = new System.Windows.Forms.ListBox();
-            this.PauseDocument = new System.Windows.Forms.Button();
             this.DeleteDocument = new System.Windows.Forms.Button();
             this.OpenClientsWindow = new System.Windows.Forms.Button();
             this.btnQuitter = new System.Windows.Forms.Button();
@@ -115,12 +114,6 @@
             this.DocumentsList.FormattingEnabled = true;
             resources.ApplyResources(this.DocumentsList, "DocumentsList");
             this.DocumentsList.Name = "DocumentsList";
-            // 
-            // PauseDocument
-            // 
-            resources.ApplyResources(this.PauseDocument, "PauseDocument");
-            this.PauseDocument.Name = "PauseDocument";
-            this.PauseDocument.UseVisualStyleBackColor = true;
             // 
             // DeleteDocument
             // 
@@ -218,7 +211,6 @@
             this.Controls.Add(this.btnQuitter);
             this.Controls.Add(this.OpenClientsWindow);
             this.Controls.Add(this.DeleteDocument);
-            this.Controls.Add(this.PauseDocument);
             this.Controls.Add(this.DocumentsList);
             this.Controls.Add(this.lblDocuments);
             this.Controls.Add(this.btnPauseImpression);
@@ -250,7 +242,6 @@
         private System.Windows.Forms.Button btnPauseImpression;
         private System.Windows.Forms.Label lblDocuments;
         private System.Windows.Forms.ListBox DocumentsList;
-        private System.Windows.Forms.Button PauseDocument;
         private System.Windows.Forms.Button DeleteDocument;
         private System.Windows.Forms.Button OpenClientsWindow;
         private System.Windows.Forms.Button btnQuitter;

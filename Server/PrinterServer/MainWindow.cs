@@ -32,7 +32,7 @@ namespace PrinterServer
         public void OpenSocket()
         {
             this.SocketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            System.Net.IPAddress ipAddress = System.Net.IPAddress.Parse(MyIP);
+            IPAddress ipAddress = IPAddress.Parse(MyIP);
             this.SocketServer.Bind(new IPEndPoint(ipAddress, 15));
             this.SocketServer.Listen(1);
             this.SocketServer.BeginAccept(new AsyncCallback(this.connexionAcceptCallback), this.SocketServer);
@@ -40,20 +40,22 @@ namespace PrinterServer
 
         private void ReceiveMessageCallback(IAsyncResult asyncResult)
         {
-            Socket socket = (Socket)asyncResult.AsyncState;
-            int read = socket.EndReceive(asyncResult);
-            if (read > 0)
+            try
             {
-                MessageBox.Show("Client dit :" + Encoding.ASCII.GetString(this.buffer));
-                Buffer.SetByte(this.buffer, 0, 0);
-                try
+
+                Socket socket = (Socket)asyncResult.AsyncState;
+                int read = socket.EndReceive(asyncResult);
+                if (read > 0)
                 {
+                    MessageBox.Show("Client dit :" + Encoding.ASCII.GetString(this.buffer));
+                    Buffer.SetByte(this.buffer, 0, 0);
+
                     this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient);
                 }
-                catch
-                {
-                    MessageBox.Show("Le client s'est déconnecté");
-                }
+            }
+            catch
+            {
+                MessageBox.Show("Le client s'est déconnecté");
             }
         }
 
