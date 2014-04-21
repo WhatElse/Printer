@@ -18,6 +18,7 @@ namespace PrinterServer
         private Socket SocketServer;
         private Socket SocketClient;
         private List<Printer> printers;
+        private List<Document> documents;
         public static ListeClients liste = new ListeClients();
         private static string MyComputerName = Dns.GetHostName();
         private static string MyIP = Dns.GetHostByName(MyComputerName).AddressList[0].ToString();
@@ -52,7 +53,7 @@ namespace PrinterServer
                 {
                     MessageBox.Show("Client dit :" + Encoding.ASCII.GetString(this.buffer));
                     Buffer.SetByte(this.buffer, 0, 0);
-                
+
                         this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient);
                 }
             }
@@ -241,6 +242,7 @@ namespace PrinterServer
             {
                 Printer printer = selectedPrinter();
                 printers.Remove(printer);
+                printer = null;
                 PrinterList.Items.Remove(PrinterList.SelectedItem);
                 PrinterList.SelectedIndex = PrinterList.Items.Count - 1;
             }
@@ -271,7 +273,76 @@ namespace PrinterServer
 
         private void DocumentsList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            changeButtonPauseDocument(selectedDocument());
+        }
 
+        private Document selectedDocument()
+        {
+            try
+            {
+                string documentSelected = DocumentsList.SelectedItem.ToString();
+
+                foreach (Document document in documents)
+                {
+                    if (document.getName().ToString() == documentSelected)
+                    {
+                        return document;
+                    }
+                }
+            }
+            catch { }
+
+            return documents.First();
+        }
+
+        private void AjouterDocument(string name, string path, int numberPage)
+        {
+            Document document = new Document(name, path, numberPage);
+            DocumentsList.Items.Add(name);
+            this.documents.Add(document);
+            DocumentsList.SelectedIndex = DocumentsList.Items.Count;
+        }
+
+        private void PauseDocument_Click(object sender, EventArgs e)
+        {
+            if (DocumentsList.Items.Count != 0)
+            {
+                Document document = selectedDocument();
+                if (document.getPause())
+                {
+                    document.setPause(false);
+                }
+                else
+                {
+                    document.setPause(true);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Il n'y a aucun document en attente");
+            }
+        }
+
+        private void changeButtonPauseDocument(Document document)
+        {
+            if (document.getPause()) PauseDocument.Text = "Reactiver le document";
+            if (!document.getPause()) PauseDocument.Text = "Mettre En Pause le document";
+        }
+
+        private void DeleteDocument_Click(object sender, EventArgs e)
+        {
+            if (DocumentsList.Items.Count != 0)
+            {
+                Document document = selectedDocument();
+                documents.Remove(document);
+                document = null;
+                DocumentsList.Items.Remove(DocumentsList.SelectedItem);
+                DocumentsList.SelectedIndex = DocumentsList.Items.Count - 1;
+            }
+            else
+            {
+                MessageBox.Show("Il n'y a aucun document en attente");
+            }
         }
     }
 }

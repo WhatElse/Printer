@@ -122,12 +122,14 @@
             resources.ApplyResources(this.PauseDocument, "PauseDocument");
             this.PauseDocument.Name = "PauseDocument";
             this.PauseDocument.UseVisualStyleBackColor = true;
+            this.PauseDocument.Click += new System.EventHandler(this.PauseDocument_Click);
             // 
             // DeleteDocument
             // 
             resources.ApplyResources(this.DeleteDocument, "DeleteDocument");
             this.DeleteDocument.Name = "DeleteDocument";
             this.DeleteDocument.UseVisualStyleBackColor = true;
+            this.DeleteDocument.Click += new System.EventHandler(this.DeleteDocument_Click);
             // 
             // OpenClientsWindow
             // 
