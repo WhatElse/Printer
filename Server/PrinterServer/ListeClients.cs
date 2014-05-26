@@ -39,7 +39,12 @@ namespace PrinterServer
 
         public void DeleteClient(string ip)
         {
-            listClients.Items.Remove(ip);
+            try
+            {
+                listClients.Items.Remove(ip);
+            }
+            catch
+            { }
         }
     }
 }

@@ -28,7 +28,6 @@ namespace PrinterServer
         public MainWindow()
         {
             InitializeComponent();
-
             this.buffer = new byte[100];
             this.printers = new List<Printer>();
             Thread ThreadListening = new Thread(() => OpenSocket());
@@ -56,10 +55,11 @@ namespace PrinterServer
                 int read = socket.EndReceive(asyncResult);
                 if (read > 0)
                 {
-                    MessageBox.Show("Client dit :" + Encoding.ASCII.GetString(this.buffer));
+                    /*MessageBox.Show("Client dit :" + Encoding.ASCII.GetString(this.buffer));*/
+                    string[] clientText = Encoding.ASCII.GetString(this.buffer).Split(',');
+                    MessageBox.Show(clientText[0]+" "+clientText[1]);
                     Buffer.SetByte(this.buffer, 0, 0);
-
-                        this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient);
+                    this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient);
                 }
             }
             catch
@@ -83,7 +83,8 @@ namespace PrinterServer
                 remoteIpEndPoint = this.SocketClient.RemoteEndPoint as IPEndPoint;
                 liste.AjoutClient(remoteIpEndPoint.ToString());
 
-                this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient);
+                Thread receiveMessage = new Thread (() => this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient));
+                receiveMessage.Start();
             }
         }
 

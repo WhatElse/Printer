@@ -27,7 +27,11 @@ namespace PrinterClient
         public ExplorerClient()
         {
             this.buffer = new byte[100];
+<<<<<<< HEAD
             GlobalVariables.ipServeur = "192.168.1.73";
+=======
+            GlobalVariables.ipServeur = "192.168.1.20";
+>>>>>>> 381564ffed00969b83ae4e4f529ae38e7ca65abd
 
             connectToServer();
 
