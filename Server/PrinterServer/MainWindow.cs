@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace PrinterServer
 {
@@ -30,8 +31,8 @@ namespace PrinterServer
 
             this.buffer = new byte[100];
             this.printers = new List<Printer>();
-
-            OpenSocket();
+            Thread ThreadListening = new Thread(() => OpenSocket());
+            ThreadListening.Start();
         }
 
         public void OpenSocket()
@@ -39,8 +40,12 @@ namespace PrinterServer
             this.SocketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             System.Net.IPAddress ipAddress = System.Net.IPAddress.Parse(MyIP);
             this.SocketServer.Bind(new IPEndPoint(ipAddress, 15));
-            this.SocketServer.Listen(1);
-            this.SocketServer.BeginAccept(new AsyncCallback(this.connexionAcceptCallback), this.SocketServer);
+            this.SocketServer.Listen(10);
+            while (true)
+            {
+                Thread ThreadPerClient = new Thread(() => this.SocketServer.BeginAccept(new AsyncCallback(this.connexionAcceptCallback), this.SocketServer));
+                ThreadPerClient.Start();
+            }
         }
 
         private void ReceiveMessageCallback(IAsyncResult asyncResult)
