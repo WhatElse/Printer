@@ -11,20 +11,20 @@ namespace PrinterServer
     {
         private String name;
         private String path;
+        private int size;
         private FileInfo informations;
-        private Boolean pause;
         private int numberPage;
         private float printingPercent;
         private int quantity;
 
-        public Document(String name, String path, int numberPage)
+        public Document(String name, String path, int size)
         {
             this.name = name;
             this.path = path;
             this.informations = new FileInfo(path);
-            this.pause = false;
             this.printingPercent = 0.0F;
-            this.numberPage = numberPage;
+            this.size = size;
+            this.numberPage = (size / 100000) + 1;
             this.quantity = 1;
         }
 
@@ -78,14 +78,14 @@ namespace PrinterServer
             this.printingPercent = printingPercent;
         }
 
-        public bool getPause()
+        public int getSize()
         {
-            return this.pause;
+            return this.size;
         }
 
-        public void setPause(bool pause)
+        public void setSize(int size)
         {
-            this.pause = pause;
+            this.size = size;
         }
 
         public int getQuantity()
