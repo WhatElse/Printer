@@ -27,7 +27,7 @@ namespace PrinterClient
         public ExplorerClient()
         {
             this.buffer = new byte[100];
-            GlobalVariables.ipServeur = "192.168.1.39";
+            GlobalVariables.ipServeur = "192.168.2.31";
 
             connectToServer();
 
@@ -60,9 +60,9 @@ namespace PrinterClient
                 this.SocketClient = socket;
                 socket.EndConnect(asyncResult);
                 MessageBox.Show("le client est co");
-                this.buffer = Encoding.ASCII.GetBytes("ZYAII");
-               
-                this.SocketClient.BeginSend(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallback), this.SocketClient);
+                
+                //col here
+                
             }
             catch
             {
@@ -76,13 +76,13 @@ namespace PrinterClient
             int read = socket.EndReceive(asyncResult);
             if( read > 0 )
 			{
-                MessageBox.Show("Message envoyé");
+                MessageBox.Show("Fichier envoyé");
                 Buffer.SetByte(this.buffer, 0, 0);
             }
 
             if( read == 0)
             {
-                MessageBox.Show("Message pas envoyé");
+                MessageBox.Show("Fichier pas envoyé");
 			}
         }
 
@@ -215,18 +215,19 @@ namespace PrinterClient
 
         private void print_button_Click(object sender, EventArgs e)
         {
-            int cpt = 0;
+            //int cpt = 0;
 
             foreach (string itemChecked in checkedListBoxFilePrinter.CheckedItems)
             {
-                copyTheFile(itemChecked, cpt);
-                cpt += 1;
+                //copyTheFile(itemChecked, cpt);
+                //cpt += 1;
+
+                this.buffer = Encoding.ASCII.GetBytes(itemChecked+","+itemChecked.Length.ToString());
+                this.SocketClient.BeginSend(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallback), this.SocketClient);
             }
+
             MessageBox.Show("Envoi au serveur OK !");
-
-            //ICI ON FAIT LENVOI DES FICHIERS SUR LE SERVEUR
-
-            deleteAllFilesInTMP();
+            //deleteAllFilesInTMP();
         }
 
         public void copyTheFile (string checkedItem, int compteur)

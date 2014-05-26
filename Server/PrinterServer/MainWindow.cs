@@ -60,8 +60,8 @@ namespace PrinterServer
             catch
             {
                 //suppression du client de la liste des clientsCo
-                //remoteIpEndPoint = this.SocketClient.RemoteEndPoint as IPEndPoint;
-                //liste.DeleteClient(remoteIpEndPoint.ToString());
+                remoteIpEndPoint = this.SocketClient.RemoteEndPoint as IPEndPoint;
+                liste.DeleteClient(remoteIpEndPoint.ToString());
                 MessageBox.Show("Le client s'est déconnecté");
             }
         }
@@ -75,8 +75,8 @@ namespace PrinterServer
                 MessageBox.Show("Un client s'est connecté !");
                 
                 //ajout du client à la liste des clientsCo
-                //remoteIpEndPoint = this.SocketClient.RemoteEndPoint as IPEndPoint;
-                //liste.AjoutClient(remoteIpEndPoint.ToString());
+                remoteIpEndPoint = this.SocketClient.RemoteEndPoint as IPEndPoint;
+                liste.AjoutClient(remoteIpEndPoint.ToString());
 
                 this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient);
             }
