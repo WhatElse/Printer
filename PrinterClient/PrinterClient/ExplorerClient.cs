@@ -27,7 +27,7 @@ namespace PrinterClient
         public ExplorerClient()
         {
             this.buffer = new byte[100];
-            GlobalVariables.ipServeur = "192.168.2.31";
+            GlobalVariables.ipServeur = "192.168.1.73";
 
             connectToServer();
 
@@ -82,7 +82,7 @@ namespace PrinterClient
 
             if( read == 0)
             {
-                MessageBox.Show("Fichier pas envoyé");
+                MessageBox.Show("Fichier NON envoyé");
 			}
         }
 
