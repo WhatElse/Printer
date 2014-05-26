@@ -16,6 +16,7 @@ namespace PrinterServer
         private int numberPage;
         private float printingPercent;
         private int quantity;
+        private Boolean pause;
 
         public Document(String name, String path, int size)
         {
@@ -26,6 +27,7 @@ namespace PrinterServer
             this.size = size;
             this.numberPage = (size / 100000) + 1;
             this.quantity = 1;
+            this.pause = false;
         }
 
         public string getName()
@@ -76,6 +78,16 @@ namespace PrinterServer
         public void setPrintingPercent(float printingPercent)
         {
             this.printingPercent = printingPercent;
+        }
+
+        public bool getPause()
+        {
+            return this.pause;
+        }
+
+        public void setPause(bool pause)
+        {
+            this.pause = pause;
         }
 
         public int getSize()
