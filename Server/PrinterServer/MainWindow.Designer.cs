@@ -34,7 +34,7 @@
             this.AddPrinter = new System.Windows.Forms.Button();
             this.DeletePrinter = new System.Windows.Forms.Button();
             this.lblPrinterName = new System.Windows.Forms.Label();
-            this.PrinterName = new System.Windows.Forms.TextBox();
+            this.printerName = new System.Windows.Forms.TextBox();
             this.lblPath = new System.Windows.Forms.Label();
             this.btnPauseImpression = new System.Windows.Forms.Button();
             this.lblDocuments = new System.Windows.Forms.Label();
@@ -49,11 +49,11 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.ServerWaiter = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.etatImprimante = new System.Windows.Forms.TextBox();
+            this.printerState = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.vitesseImprimante = new System.Windows.Forms.TextBox();
+            this.printerSpeed = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.IPAdresse = new System.Windows.Forms.TextBox();
+            this.ipAdress = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,10 +88,10 @@
             resources.ApplyResources(this.lblPrinterName, "lblPrinterName");
             this.lblPrinterName.Name = "lblPrinterName";
             // 
-            // PrinterName
+            // printerName
             // 
-            resources.ApplyResources(this.PrinterName, "PrinterName");
-            this.PrinterName.Name = "PrinterName";
+            resources.ApplyResources(this.printerName, "printerName");
+            this.printerName.Name = "printerName";
             // 
             // lblPath
             // 
@@ -167,10 +167,6 @@
             resources.ApplyResources(this.progressBar1, "progressBar1");
             this.progressBar1.Name = "progressBar1";
             // 
-            // ServerWaiter
-            // 
-            this.ServerWaiter.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.progressBar1);
@@ -180,42 +176,40 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
-            // etatImprimante
+            // printerState
             // 
-            resources.ApplyResources(this.etatImprimante, "etatImprimante");
-            this.etatImprimante.Name = "etatImprimante";
+            resources.ApplyResources(this.printerState, "printerState");
+            this.printerState.Name = "printerState";
             // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
             // 
-            // vitesseImprimante
+            // printerSpeed
             // 
-            resources.ApplyResources(this.vitesseImprimante, "vitesseImprimante");
-            this.vitesseImprimante.Name = "vitesseImprimante";
-            this.vitesseImprimante.TextChanged += new System.EventHandler(this.vitesseImprimante_TextChanged);
+            resources.ApplyResources(this.printerSpeed, "printerSpeed");
+            this.printerSpeed.Name = "printerSpeed";
             // 
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // IPAdresse
+            // ipAdress
             // 
-            resources.ApplyResources(this.IPAdresse, "IPAdresse");
-            this.IPAdresse.Name = "IPAdresse";
+            resources.ApplyResources(this.ipAdress, "ipAdress");
+            this.ipAdress.Name = "ipAdress";
             // 
             // MainWindow
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.IPAdresse);
+            this.Controls.Add(this.ipAdress);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.vitesseImprimante);
+            this.Controls.Add(this.printerSpeed);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.etatImprimante);
+            this.Controls.Add(this.printerState);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnMAJImprimante);
             this.Controls.Add(this.btnQuitter);
@@ -226,14 +220,13 @@
             this.Controls.Add(this.lblDocuments);
             this.Controls.Add(this.btnPauseImpression);
             this.Controls.Add(this.lblPath);
-            this.Controls.Add(this.PrinterName);
+            this.Controls.Add(this.printerName);
             this.Controls.Add(this.lblPrinterName);
             this.Controls.Add(this.DeletePrinter);
             this.Controls.Add(this.AddPrinter);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PrinterList);
             this.Name = "MainWindow";
-            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -248,7 +241,7 @@
         private System.Windows.Forms.Button AddPrinter;
         private System.Windows.Forms.Button DeletePrinter;
         private System.Windows.Forms.Label lblPrinterName;
-        private System.Windows.Forms.TextBox PrinterName;
+        private System.Windows.Forms.TextBox printerName;
         private System.Windows.Forms.Label lblPath;
         private System.Windows.Forms.Button btnPauseImpression;
         private System.Windows.Forms.Label lblDocuments;
@@ -263,11 +256,11 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.ComponentModel.BackgroundWorker ServerWaiter;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox etatImprimante;
+        private System.Windows.Forms.TextBox printerState;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox vitesseImprimante;
+        private System.Windows.Forms.TextBox printerSpeed;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox IPAdresse;
+        private System.Windows.Forms.TextBox ipAdress;
     }
 }
 

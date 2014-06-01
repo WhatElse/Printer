@@ -30,7 +30,6 @@ namespace PrinterServer
             this.ip = ip;
             this.documentQueue = new Queue<Document>();
             this.currentPrinting = null;
-
             this.documentQueueThread = new Thread(queue);
             this.documentQueueThread.IsBackground = true;
             this.documentQueueThread.Start();

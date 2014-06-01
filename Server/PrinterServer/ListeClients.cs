@@ -12,6 +12,8 @@ namespace PrinterServer
 {
     public partial class ListeClients : Form
     {
+        static readonly object verrou = new object();
+
         public ListeClients()
         {
             InitializeComponent();
@@ -34,17 +36,18 @@ namespace PrinterServer
 
         public void AjoutClient(string ip)
         {
-            listClients.Items.Add(ip.ToString());
+            lock (verrou)
+            {
+                listClients.Items.Add(ip.ToString());
+            }
         }
 
         public void DeleteClient(string ip)
         {
-            try
+            lock (verrou)
             {
                 listClients.Items.Remove(ip);
             }
-            catch
-            { }
         }
     }
 }

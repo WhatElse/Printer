@@ -20,10 +20,13 @@ namespace PrinterServer
         private Socket SocketClient;
         private List<Printer> printers;
         private List<Document> documents;
-        public static ListeClients liste = new ListeClients();
+        public static ListeClients list = new ListeClients();
         private static string MyComputerName = Dns.GetHostName();
         private static string MyIP = Dns.GetHostByName(MyComputerName).AddressList[0].ToString();
         public IPEndPoint remoteIpEndPoint;
+        private delegate void RemoveClient(IPEndPoint IP);
+        private delegate void AddClient(IPEndPoint IP);
+
 
         public MainWindow()
         {
@@ -55,7 +58,6 @@ namespace PrinterServer
                 int read = socket.EndReceive(asyncResult);
                 if (read > 0)
                 {
-                    /*MessageBox.Show("Client dit :" + Encoding.ASCII.GetString(this.buffer));*/
                     string[] clientText = Encoding.ASCII.GetString(this.buffer).Split(',');
                     MessageBox.Show(clientText[0]+" "+clientText[1]);
                     Buffer.SetByte(this.buffer, 0, 0);
@@ -64,10 +66,9 @@ namespace PrinterServer
             }
             catch
             {
-                //suppression du client de la liste des clientsCo
                 remoteIpEndPoint = this.SocketClient.RemoteEndPoint as IPEndPoint;
-                liste.DeleteClient(remoteIpEndPoint.ToString());
-                MessageBox.Show("Le client s'est déconnecté");
+                Thread ThreadInvokeDisconnectTheClient = new Thread(new ThreadStart(ThreadMethodRemoveClient));
+                ThreadInvokeDisconnectTheClient.Start();           
             }
         }
 
@@ -76,13 +77,10 @@ namespace PrinterServer
             Socket socket = (Socket)asyncResult.AsyncState;
             if (socket.Handle.ToInt32() != -1)
             {
-                this.SocketClient = socket.EndAccept(asyncResult);
-                MessageBox.Show("Un client s'est connecté !");
-                
-                //ajout du client à la liste des clientsCo
+                this.SocketClient = socket.EndAccept(asyncResult);           
                 remoteIpEndPoint = this.SocketClient.RemoteEndPoint as IPEndPoint;
-                liste.AjoutClient(remoteIpEndPoint.ToString());
-
+                Thread AddClientToTheList = new Thread(new ThreadStart(ThreadMethodAddClient));
+                AddClientToTheList.Start();
                 Thread receiveMessage = new Thread (() => this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient));
                 receiveMessage.Start();
             }
@@ -93,39 +91,44 @@ namespace PrinterServer
             if (PrinterList.Items.Count != 0)
             {
                 Printer printer = selectedPrinter();
-                IPAdresse.Text = printer.getIP();
-                vitesseImprimante.Text = printer.getSpeed().ToString();
-                PrinterName.Text = printer.getName();
-                etatImprimante.Text = printer.getStateInfo(printer.getState());
+                ipAdress.Text = printer.getIP();
+                printerSpeed.Text = printer.getSpeed().ToString();
+                printerName.Text = printer.getName();
+                printerState.Text = printer.getStateInfo(printer.getState());
                 changeButtonPauseImpression(printer);
             }
             else
             {
-                IPAdresse.Text = "";
-                vitesseImprimante.Text = "";
-                PrinterName.Text = "";
-                etatImprimante.Text = "";
+                ipAdress.Text = "";
+                printerSpeed.Text = "";
+                printerName.Text = "";
+                printerState.Text = "";
             }
         }
 
-        private void MainWindow_Load(object sender, EventArgs e)
+        private void ThreadMethodRemoveClient()
         {
-
+            this.Invoke(new RemoveClient(RemoveClientFromTheListe), remoteIpEndPoint);
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        private void ThreadMethodAddClient()
         {
-
+            this.Invoke(new AddClient(AddClientToTheListe), remoteIpEndPoint);
         }
 
-        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        private void AddClientToTheListe(IPEndPoint IP)
         {
+            list.AjoutClient(remoteIpEndPoint.ToString());
+        }
 
+        private void RemoveClientFromTheListe(IPEndPoint IP)
+        {
+            list.DeleteClient(IP.ToString());
         }
 
         private void OpenClientsWindow_Click(object sender, EventArgs e)
         {
-            liste.Show();
+            list.Show();
         }
 
         private void btnQuitter_Click(object sender, EventArgs e)
@@ -133,17 +136,13 @@ namespace PrinterServer
             this.Close();
         }
 
-        private void vitesseImprimante_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void btnMAJImprimante_Click(object sender, EventArgs e)
         {
             if (PrinterList.Items.Count != 0)
             {
                 Printer printer = selectedPrinter();
-                printer.setIP(IPAdresse.Text);
-                printer.setName(PrinterName.Text);
+                printer.setIP(ipAdress.Text);
+                printer.setName(printerName.Text);
             }
             else
             {
@@ -160,23 +159,23 @@ namespace PrinterServer
             foreach (string item in PrinterList.Items)
             {
                 ip = item.Split(' ')[0];
-                if (ip == IPAdresse.Text.ToString()) verif = true;
+                if (ip == ipAdress.Text.ToString()) verif = true;
             }
 
             if (!verif)
             {
-                if (PrinterName.Text != "" && IPAdresse.Text != "")
+                if (printerName.Text != "" && ipAdress.Text != "")
                 {
-                    if (verifierUneIp(IPAdresse.Text.ToString()))
+                    if (checkAnIP(ipAdress.Text.ToString()))
                     {
                         Random random = new Random();
                         int alea = random.Next(1, 5);
-                        vitesseImprimante.Text = alea.ToString();
+                        printerSpeed.Text = alea.ToString();
 
-                        Printer newPrinter = new Printer(alea, PrinterName.Text.ToString(), IPAdresse.Text.ToString(), 1, false);
-                        etatImprimante.Text = newPrinter.getStateInfo(newPrinter.getState());
+                        Printer newPrinter = new Printer(alea, printerName.Text.ToString(), ipAdress.Text.ToString(), 1, false);
+                        printerState.Text = newPrinter.getStateInfo(newPrinter.getState());
 
-                        PrinterList.Items.Add(IPAdresse.Text.ToString() + " - " + PrinterName.Text.ToString());
+                        PrinterList.Items.Add(ipAdress.Text.ToString() + " - " + printerName.Text.ToString());
                         this.printers.Add(newPrinter);
                         if (PrinterList.Items.Count != 0) PrinterList.SelectedIndex = PrinterList.Items.Count - 1;
                     }
@@ -196,11 +195,6 @@ namespace PrinterServer
             }
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnPauseImpression_Click(object sender, EventArgs e)
         {
             if (PrinterList.Items.Count != 0)
@@ -208,7 +202,7 @@ namespace PrinterServer
                 Printer printer = selectedPrinter();
                 if (printer.getState() == 1) printer.setState(0);
                 else printer.setState(1);
-                etatImprimante.Text = printer.getStateInfo(printer.getState());
+                printerState.Text = printer.getStateInfo(printer.getState());
                 changeButtonPauseImpression(printer);
             }
             else
@@ -258,7 +252,7 @@ namespace PrinterServer
             }
         }
 
-        private bool verifierUneIp(string ip)
+        private bool checkAnIP(string ip)
         {
             IPAddress address;
             if (IPAddress.TryParse(ip, out address))
@@ -301,7 +295,7 @@ namespace PrinterServer
             return documents.First();
         }
 
-        private void AjouterDocument(string name, string path, int numberPage)
+        private void AddDocument(string name, string path, int numberPage)
         {
             Document document = new Document(name, path, numberPage);
             DocumentsList.Items.Add(name);

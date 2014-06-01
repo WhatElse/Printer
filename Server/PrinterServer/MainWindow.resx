@@ -242,25 +242,25 @@
   <data name="&gt;&gt;lblPrinterName.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
-  <data name="PrinterName.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="printerName.Location" type="System.Drawing.Point, System.Drawing">
     <value>220, 43</value>
   </data>
-  <data name="PrinterName.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="printerName.Size" type="System.Drawing.Size, System.Drawing">
     <value>315, 20</value>
   </data>
-  <data name="PrinterName.TabIndex" type="System.Int32, mscorlib">
+  <data name="printerName.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;PrinterName.Name" xml:space="preserve">
-    <value>PrinterName</value>
+  <data name="&gt;&gt;printerName.Name" xml:space="preserve">
+    <value>printerName</value>
   </data>
-  <data name="&gt;&gt;PrinterName.Type" xml:space="preserve">
+  <data name="&gt;&gt;printerName.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PrinterName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;printerName.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;PrinterName.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;printerName.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
   <data name="lblPath.AutoSize" type="System.Boolean, mscorlib">
@@ -584,31 +584,31 @@
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <metadata name="etatImprimante.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="printerState.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="etatImprimante.Enabled" type="System.Boolean, mscorlib">
+  <data name="printerState.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="etatImprimante.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="printerState.Location" type="System.Drawing.Point, System.Drawing">
     <value>220, 83</value>
   </data>
-  <data name="etatImprimante.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="printerState.Size" type="System.Drawing.Size, System.Drawing">
     <value>154, 20</value>
   </data>
-  <data name="etatImprimante.TabIndex" type="System.Int32, mscorlib">
+  <data name="printerState.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
-  <data name="&gt;&gt;etatImprimante.Name" xml:space="preserve">
-    <value>etatImprimante</value>
+  <data name="&gt;&gt;printerState.Name" xml:space="preserve">
+    <value>printerState</value>
   </data>
-  <data name="&gt;&gt;etatImprimante.Type" xml:space="preserve">
+  <data name="&gt;&gt;printerState.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;etatImprimante.Parent" xml:space="preserve">
+  <data name="&gt;&gt;printerState.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;etatImprimante.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;printerState.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
@@ -638,28 +638,28 @@
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="vitesseImprimante.Enabled" type="System.Boolean, mscorlib">
+  <data name="printerSpeed.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="vitesseImprimante.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="printerSpeed.Location" type="System.Drawing.Point, System.Drawing">
     <value>384, 83</value>
   </data>
-  <data name="vitesseImprimante.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="printerSpeed.Size" type="System.Drawing.Size, System.Drawing">
     <value>151, 20</value>
   </data>
-  <data name="vitesseImprimante.TabIndex" type="System.Int32, mscorlib">
+  <data name="printerSpeed.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
-  <data name="&gt;&gt;vitesseImprimante.Name" xml:space="preserve">
-    <value>vitesseImprimante</value>
+  <data name="&gt;&gt;printerSpeed.Name" xml:space="preserve">
+    <value>printerSpeed</value>
   </data>
-  <data name="&gt;&gt;vitesseImprimante.Type" xml:space="preserve">
+  <data name="&gt;&gt;printerSpeed.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;vitesseImprimante.Parent" xml:space="preserve">
+  <data name="&gt;&gt;printerSpeed.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;vitesseImprimante.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;printerSpeed.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
@@ -693,25 +693,25 @@
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="IPAdresse.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="ipAdress.Location" type="System.Drawing.Point, System.Drawing">
     <value>220, 122</value>
   </data>
-  <data name="IPAdresse.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="ipAdress.Size" type="System.Drawing.Size, System.Drawing">
     <value>154, 20</value>
   </data>
-  <data name="IPAdresse.TabIndex" type="System.Int32, mscorlib">
+  <data name="ipAdress.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
   </data>
-  <data name="&gt;&gt;IPAdresse.Name" xml:space="preserve">
-    <value>IPAdresse</value>
+  <data name="&gt;&gt;ipAdress.Name" xml:space="preserve">
+    <value>ipAdress</value>
   </data>
-  <data name="&gt;&gt;IPAdresse.Type" xml:space="preserve">
+  <data name="&gt;&gt;ipAdress.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;IPAdresse.Parent" xml:space="preserve">
+  <data name="&gt;&gt;ipAdress.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;IPAdresse.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;ipAdress.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
