@@ -344,5 +344,32 @@ namespace PrinterServer
                 MessageBox.Show("Il n'y a aucun document en attente");
             }
         }
+
+        public Printer getFastest()
+        {
+            Printer fastest = null;
+            int estimatedTime = 0;
+
+            foreach (Printer printer in this.printers.ToArray())
+            {
+                if (fastest == null || printer.getEstimatedEndTime() < estimatedTime)
+                {
+                    fastest = printer;
+                    estimatedTime = printer.getEstimatedEndTime();
+                    continue;
+                }
+            }
+
+            return fastest;
+        }
+
+        private Printer assignDocument(Document doc)
+        {
+            Printer fastest = this.getFastest();
+
+            fastest.addDocument(doc);
+
+            return fastest;
+        }
     }
 }

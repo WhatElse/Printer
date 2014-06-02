@@ -7,7 +7,7 @@ using System.IO;
 
 namespace PrinterServer
 {
-    class Document
+    public class Document
     {
         private String name;
         private String path;

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace PrinterServer
 {
-    class Printer
+    public class Printer
     {
         private String name;
         private int state;
@@ -124,7 +124,7 @@ namespace PrinterServer
         {
             this.bytesPrinted = 0;
             int remaining = this.currentPrinting.getSize();
-            int ratio = 0;
+            float ratio = 0;
 
             while (bytesPrinted < this.currentPrinting.getSize())
             {
@@ -134,13 +134,38 @@ namespace PrinterServer
 
                 this.currentPrinting.setPrintingPercent(bytesPrinted / this.currentPrinting.getSize());
 
-                System.Threading.Thread.Sleep(60 * 1000 / this.speed * ratio);
+                System.Threading.Thread.Sleep((int) (60 * 1000 / this.speed * ratio));
             }
 
             this.currentPrinting = null;
             this.bytesPrinted = 0;
 
             return true;
+        }
+
+        public int getEstimatedEndTime()
+        {
+            int secondsRemaining = 0;
+
+            // Current printing doc
+            int remaining = this.currentPrinting.getSize() - this.bytesPrinted;
+            float ratio = (Math.Min(10000, remaining) / 10000);
+
+            secondsRemaining += (int) (60 / this.speed * ratio);
+
+            foreach(Document doc in this.documentQueue.ToArray())
+            {
+                ratio = doc.getSize() / 10000;
+
+                secondsRemaining += (int) (60 / this.speed * ratio);
+            }
+
+            return secondsRemaining;
+        }
+
+        public void addDocument(Document doc)
+        {
+            this.documentQueue.Enqueue(doc);
         }
     }
 }
