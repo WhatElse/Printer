@@ -24,8 +24,12 @@ namespace PrinterServer
         private static string MyComputerName = Dns.GetHostName();
         private static string MyIP = Dns.GetHostByName(MyComputerName).AddressList[0].ToString();
         public IPEndPoint remoteIpEndPoint;
+        public string name;
+        public string path;
+        public int nbPage;
         private delegate void RemoveClient(IPEndPoint IP);
         private delegate void AddClient(IPEndPoint IP);
+        private delegate void AddDoc(string name, string path, int numberPage);
 
 
         public MainWindow()
@@ -33,6 +37,7 @@ namespace PrinterServer
             InitializeComponent();
             this.buffer = new byte[100];
             this.printers = new List<Printer>();
+            this.documents = new List<Document>();
             Thread ThreadListening = new Thread(() => OpenSocket());
             ThreadListening.Start();
         }
@@ -59,7 +64,11 @@ namespace PrinterServer
                 if (read > 0)
                 {
                     string[] clientText = Encoding.ASCII.GetString(this.buffer).Split(',');
-                    MessageBox.Show(clientText[0]+" "+clientText[1]);
+                    name = clientText[1];
+                    path = clientText[0];
+                    nbPage = 5;
+                    Thread AddTheDocumentInTheList = new Thread(new ThreadStart(ThreadMethodAddTheDocument));
+                    AddTheDocumentInTheList.Start();
                     Buffer.SetByte(this.buffer, 0, 0);
                     this.SocketClient.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessageCallback), this.SocketClient);
                 }
@@ -114,6 +123,11 @@ namespace PrinterServer
         private void ThreadMethodAddClient()
         {
             this.Invoke(new AddClient(AddClientToTheListe), remoteIpEndPoint);
+        }
+
+        private void ThreadMethodAddTheDocument()
+        {
+            this.Invoke(new AddDoc(AddDocument), name, path, nbPage);
         }
 
         private void AddClientToTheListe(IPEndPoint IP)
@@ -278,21 +292,16 @@ namespace PrinterServer
 
         private Document selectedDocument()
         {
-            try
-            {
                 string documentSelected = DocumentsList.SelectedItem.ToString();
 
                 foreach (Document document in documents)
                 {
-                    if (document.getName().ToString() == documentSelected)
+                    if (document.getName().ToString() == documentSelected.ToString())
                     {
                         return document;
                     }
                 }
-            }
-            catch { }
-
-            return documents.First();
+               return documents.First();
         }
 
         private void AddDocument(string name, string path, int numberPage)
@@ -300,7 +309,6 @@ namespace PrinterServer
             Document document = new Document(name, path, numberPage);
             DocumentsList.Items.Add(name);
             this.documents.Add(document);
-            DocumentsList.SelectedIndex = DocumentsList.Items.Count;
         }
 
         private void PauseDocument_Click(object sender, EventArgs e)
@@ -333,6 +341,7 @@ namespace PrinterServer
         {
             if (DocumentsList.Items.Count != 0)
             {
+
                 Document document = selectedDocument();
                 documents.Remove(document);
                 document = null;
