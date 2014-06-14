@@ -59,10 +59,6 @@ namespace PrinterClient
                 Socket socket = (Socket)asyncResult.AsyncState;
                 this.SocketClient = socket;
                 socket.EndConnect(asyncResult);
-                MessageBox.Show("le client est co");
-                
-                //col here
-                
             }
             catch
             {
@@ -76,7 +72,6 @@ namespace PrinterClient
             int read = socket.EndReceive(asyncResult);
             if( read > 0 )
 			{
-                MessageBox.Show("Fichier envoyé");
                 Buffer.SetByte(this.buffer, 0, 0);
             }
 
@@ -226,7 +221,6 @@ namespace PrinterClient
                 this.SocketClient.BeginSend(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallback), this.SocketClient);
             }
 
-            MessageBox.Show("Envoi au serveur OK !");
             //deleteAllFilesInTMP();
         }
 

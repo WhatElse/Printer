@@ -123,16 +123,16 @@ namespace PrinterServer
         private Boolean printDoc() 
         {
             this.bytesPrinted = 0;
-            int remaining = this.currentPrinting.getSize();
+            int remaining = this.currentPrinting.getWeight();
             float ratio = 0;
 
-            while (bytesPrinted < this.currentPrinting.getSize())
+            while (bytesPrinted < this.currentPrinting.getWeight())
             {
-                remaining = this.currentPrinting.getSize() - this.bytesPrinted;
+                remaining = this.currentPrinting.getWeight() - this.bytesPrinted;
                 bytesPrinted += Math.Min(10000, remaining);
                 ratio = (Math.Min(10000, remaining) / 10000);
 
-                this.currentPrinting.setPrintingPercent(bytesPrinted / this.currentPrinting.getSize());
+                this.currentPrinting.setPrintingPercent(bytesPrinted / this.currentPrinting.getWeight());
 
                 System.Threading.Thread.Sleep((int) (60 * 1000 / this.speed * ratio));
             }
@@ -148,14 +148,14 @@ namespace PrinterServer
             int secondsRemaining = 0;
 
             // Current printing doc
-            int remaining = this.currentPrinting.getSize() - this.bytesPrinted;
+            int remaining = this.currentPrinting.getWeight() - this.bytesPrinted;
             float ratio = (Math.Min(10000, remaining) / 10000);
 
             secondsRemaining += (int) (60 / this.speed * ratio);
 
             foreach(Document doc in this.documentQueue.ToArray())
             {
-                ratio = doc.getSize() / 10000;
+                ratio = doc.getWeight() / 10000;
 
                 secondsRemaining += (int) (60 / this.speed * ratio);
             }

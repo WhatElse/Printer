@@ -25,11 +25,11 @@ namespace PrinterServer
         private static string MyIP = Dns.GetHostByName(MyComputerName).AddressList[0].ToString();
         public IPEndPoint remoteIpEndPoint;
         public string name;
-        public string path;
+        public int weight;
         public int nbPage;
         private delegate void RemoveClient(IPEndPoint IP);
         private delegate void AddClient(IPEndPoint IP);
-        private delegate void AddDoc(string name, string path, int numberPage);
+        private delegate void AddDoc(string name, int weight);
 
 
         public MainWindow()
@@ -63,10 +63,10 @@ namespace PrinterServer
                 int read = socket.EndReceive(asyncResult);
                 if (read > 0)
                 {
+                    MessageBox.Show(Encoding.ASCII.GetString(this.buffer));
                     string[] clientText = Encoding.ASCII.GetString(this.buffer).Split(',');
-                    name = clientText[1];
-                    path = clientText[0];
-                    nbPage = 5;
+                    name = clientText[0];
+                    weight = int.Parse(clientText[1]);
                     Thread AddTheDocumentInTheList = new Thread(new ThreadStart(ThreadMethodAddTheDocument));
                     AddTheDocumentInTheList.Start();
                     Buffer.SetByte(this.buffer, 0, 0);
@@ -127,7 +127,7 @@ namespace PrinterServer
 
         private void ThreadMethodAddTheDocument()
         {
-            this.Invoke(new AddDoc(AddDocument), name, path, nbPage);
+            this.Invoke(new AddDoc(AddDocument), name, weight);
         }
 
         private void AddClientToTheListe(IPEndPoint IP)
@@ -240,7 +240,6 @@ namespace PrinterServer
                 }
             }
             catch { }
-
                 return printers.First();
         }
 
@@ -292,6 +291,8 @@ namespace PrinterServer
 
         private Document selectedDocument()
         {
+            try
+            {
                 string documentSelected = DocumentsList.SelectedItem.ToString();
 
                 foreach (Document document in documents)
@@ -301,13 +302,15 @@ namespace PrinterServer
                         return document;
                     }
                 }
-               return documents.First();
+            }
+            catch { } return null;
+
         }
 
-        private void AddDocument(string name, string path, int numberPage)
+        private void AddDocument(string name, int weight)
         {
-            Document document = new Document(name, path, numberPage);
-            DocumentsList.Items.Add(name);
+            Document document = new Document(name, weight);
+            DocumentsList.Items.Add(name.ToString());
             this.documents.Add(document);
         }
 

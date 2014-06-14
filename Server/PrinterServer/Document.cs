@@ -11,22 +11,18 @@ namespace PrinterServer
     public class Document
     {
         private String name;
-        private String path;
-        private int size;
-        private FileInfo informations;
+        private int weight;
         private int numberPage;
         private float printingPercent;
         private int quantity;
         private Boolean pause;
 
-        public Document(String name, String path, int size)
+        public Document(String name, int weight)
         {
             this.name = name;
-            this.path = path;
-            this.informations = new FileInfo(path);
+            this.weight = weight;
             this.printingPercent = 0.0F;
-            this.size = size;
-            this.numberPage = (size / 100000) + 1;
+            this.numberPage = weight / 10 + 1;
             this.quantity = 1;
             this.pause = false;
         }
@@ -41,24 +37,14 @@ namespace PrinterServer
             this.name = name;
         }
 
-        public string getPath()
+        public int getWeight()
         {
-            return this.path;
+            return this.weight;
         }
 
-        public void setPath(string path)
+        public void setWeight(int weight)
         {
-            this.path = path;
-        }
-
-        public FileInfo getInformations()
-        {
-            return this.informations;
-        }
-
-        public void setInformations(FileInfo informations)
-        {
-            this.informations = informations;
+            this.weight = weight;
         }
 
         public int getNumberPage()
@@ -90,17 +76,6 @@ namespace PrinterServer
         {
             this.pause = pause;
         }
-
-        public int getSize()
-        {
-            return this.size;
-        }
-
-        public void setSize(int size)
-        {
-            this.size = size;
-        }
-
         public int getQuantity()
         {
             return this.quantity;
