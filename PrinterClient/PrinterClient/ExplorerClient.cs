@@ -59,6 +59,12 @@ namespace PrinterClient
                 Socket socket = (Socket)asyncResult.AsyncState;
                 this.SocketClient = socket;
                 socket.EndConnect(asyncResult);
+<<<<<<< HEAD
+=======
+                
+                //col here
+                
+>>>>>>> cc0db2006fa229ca8085eb80b3564c728627ed1f
             }
             catch
             {
@@ -72,7 +78,11 @@ namespace PrinterClient
             int read = socket.EndReceive(asyncResult);
             if( read > 0 )
 			{
+<<<<<<< HEAD
                 Buffer.SetByte(this.buffer, 0, 0);
+=======
+                 Buffer.SetByte(this.buffer, 0, 0);
+>>>>>>> cc0db2006fa229ca8085eb80b3564c728627ed1f
             }
 
             if( read == 0)
