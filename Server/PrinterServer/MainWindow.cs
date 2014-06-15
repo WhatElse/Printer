@@ -152,6 +152,7 @@ namespace PrinterServer
         private void btnQuitter_Click(object sender, EventArgs e)
         {
             this.Close();
+            Environment.Exit(0);
         }
 
         private void btnMAJImprimante_Click(object sender, EventArgs e)
