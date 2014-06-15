@@ -117,7 +117,11 @@ namespace PrinterServer
 
         private void ThreadMethodRemoveClient()
         {
-            this.Invoke(new RemoveClient(RemoveClientFromTheListe), remoteIpEndPoint);
+            try
+            {
+                this.Invoke(new RemoveClient(RemoveClientFromTheListe), remoteIpEndPoint);
+            }
+            catch { }//fermeture du serveur avant le client
         }
 
         private void ThreadMethodAddClient()
@@ -285,32 +289,32 @@ namespace PrinterServer
         }
 
         private void DocumentsList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            changeButtonPauseDocument(selectedDocument());
+        {         
         }
 
         private Document selectedDocument()
         {
-            try
-            {
-                string documentSelected = DocumentsList.SelectedItem.ToString();
 
+            if (DocumentsList.Items.Count != 0)
+            {
                 foreach (Document document in documents)
                 {
-                    if (document.getName().ToString() == documentSelected.ToString())
+                    if (document.getName().ToString() == DocumentsList.SelectedItem.ToString())
                     {
                         return document;
                     }
                 }
             }
-            catch { } return null;
-
+            
+            return documents.First();
         }
 
         private void AddDocument(string name, int weight)
         {
-            Document document = new Document(name, weight);
             DocumentsList.Items.Add(name.ToString());
+            if (DocumentsList.Items.Count != 0) DocumentsList.SelectedIndex = DocumentsList.Items.Count - 1;
+
+            Document document = new Document(name, weight);
             this.documents.Add(document);
         }
 
@@ -336,8 +340,8 @@ namespace PrinterServer
 
         private void changeButtonPauseDocument(Document document)
         {
-            if (document.getPause()) PauseDocument.Text = "Reactiver le document";
-            if (!document.getPause()) PauseDocument.Text = "Mettre En Pause le document";
+            if (document.getPause()) PauseDocument.Text = "Reactiver le doc";
+            if (!document.getPause()) PauseDocument.Text = "Mettre en pause";
         }
 
         private void DeleteDocument_Click(object sender, EventArgs e)
