@@ -289,7 +289,8 @@ namespace PrinterServer
         }
 
         private void DocumentsList_SelectedIndexChanged(object sender, EventArgs e)
-        {         
+        {
+            labelDocument.Text = DocumentsList.SelectedItem.ToString();
         }
 
         private Document selectedDocument()
@@ -301,6 +302,7 @@ namespace PrinterServer
                 {
                     if (document.getName().ToString() == DocumentsList.SelectedItem.ToString())
                     {
+                        labelDocument.Text = document.getName().ToString();
                         return document;
                     }
                 }
@@ -312,7 +314,11 @@ namespace PrinterServer
         private void AddDocument(string name, int weight)
         {
             DocumentsList.Items.Add(name.ToString());
-            if (DocumentsList.Items.Count != 0) DocumentsList.SelectedIndex = DocumentsList.Items.Count - 1;
+            if (DocumentsList.Items.Count != 0)
+            {
+                DocumentsList.SelectedIndex = DocumentsList.Items.Count - 1;
+                labelDocument.Text = name.ToString();
+            }
 
             Document document = new Document(name, weight);
             this.documents.Add(document);

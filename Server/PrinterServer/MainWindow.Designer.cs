@@ -53,6 +53,7 @@
             this.printerSpeed = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.ipAdress = new System.Windows.Forms.TextBox();
+            this.labelDocument = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -193,10 +194,16 @@
             resources.ApplyResources(this.ipAdress, "ipAdress");
             this.ipAdress.Name = "ipAdress";
             // 
+            // labelDocument
+            // 
+            resources.ApplyResources(this.labelDocument, "labelDocument");
+            this.labelDocument.Name = "labelDocument";
+            // 
             // MainWindow
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelDocument);
             this.Controls.Add(this.ipAdress);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.printerSpeed);
@@ -251,6 +258,7 @@
         private System.Windows.Forms.TextBox printerSpeed;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox ipAdress;
+        private System.Windows.Forms.Label labelDocument;
     }
 }
 
