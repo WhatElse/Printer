@@ -318,32 +318,6 @@ namespace PrinterServer
             this.documents.Add(document);
         }
 
-        private void PauseDocument_Click(object sender, EventArgs e)
-        {
-            if (DocumentsList.Items.Count != 0)
-            {
-                Document document = selectedDocument();
-                if (document.getPause())
-                {
-                    document.setPause(false);
-                }
-                else
-                {
-                    document.setPause(true);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Il n'y a aucun document en attente");
-            }
-        }
-
-        private void changeButtonPauseDocument(Document document)
-        {
-            if (document.getPause()) PauseDocument.Text = "Reactiver le doc";
-            if (!document.getPause()) PauseDocument.Text = "Mettre en pause";
-        }
-
         private void DeleteDocument_Click(object sender, EventArgs e)
         {
             if (DocumentsList.Items.Count != 0)
