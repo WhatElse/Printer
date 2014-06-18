@@ -291,7 +291,11 @@ namespace PrinterServer
 
         private void DocumentsList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            labelDocument.Text = DocumentsList.SelectedItem.ToString();
+            try
+            {
+                labelDocument.Text = DocumentsList.SelectedItem.ToString();
+            }
+            catch { } // issue #7 : bug lors de l'envoi de plusieurs documents
         }
 
         private Document selectedDocument()
@@ -323,6 +327,8 @@ namespace PrinterServer
 
             Document document = new Document(name, weight);
             this.documents.Add(document);
+
+            assignDocument(document);
         }
 
         private void DeleteDocument_Click(object sender, EventArgs e)
