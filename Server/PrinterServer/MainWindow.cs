@@ -331,6 +331,7 @@ namespace PrinterServer
                 this.documents.Add(document);
 
                 assignDocument(document);
+                updateProgressBar(selectedDocument());
             }
             else
             {
@@ -348,6 +349,7 @@ namespace PrinterServer
                 document = null;
                 DocumentsList.Items.Remove(DocumentsList.SelectedItem);
                 DocumentsList.SelectedIndex = DocumentsList.Items.Count - 1;
+                updateProgressBar(selectedDocument());
             }
             else
             {
@@ -382,5 +384,21 @@ namespace PrinterServer
 
             return fastest;
         }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void updateProgressBar(Document document)
+        {
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = 100;
+            progressBar1.Value = (int) document.getPrintingPercent();
+            while (progressBar1.Value < progressBar1.Maximum)
+            {
+                progressBar1.Value = (int)document.getPrintingPercent();
+            }
+        }
+
     }
 }

@@ -159,6 +159,7 @@
             // 
             resources.ApplyResources(this.progressBar1, "progressBar1");
             this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
             // groupBox1
             // 

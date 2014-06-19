@@ -141,6 +141,7 @@ namespace PrinterServer
             }
 
             MessageBox.Show(this.currentPrinting.getName()+" a fini son impression");
+
             this.currentPrinting = null;
             this.bytesPrinted = 0;
 
