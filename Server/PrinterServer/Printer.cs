@@ -126,6 +126,8 @@ namespace PrinterServer
             int remaining = this.currentPrinting.getWeight();
             float ratio = 0;
 
+            MessageBox.Show(this.currentPrinting.getName()+" débute son impression");
+
             while (bytesPrinted < this.currentPrinting.getWeight())
             {
                 remaining = this.currentPrinting.getWeight() - this.bytesPrinted;
@@ -135,8 +137,10 @@ namespace PrinterServer
                 this.currentPrinting.setPrintingPercent(bytesPrinted / this.currentPrinting.getWeight());
 
                 System.Threading.Thread.Sleep((int) (60 * 1000 / this.speed * ratio));
+                MessageBox.Show(this.currentPrinting.getName()+" : "+(bytesPrinted / this.currentPrinting.getWeight() * 100)+"%");
             }
 
+            MessageBox.Show(this.currentPrinting.getName()+" a fini son impression");
             this.currentPrinting = null;
             this.bytesPrinted = 0;
 
@@ -146,6 +150,9 @@ namespace PrinterServer
         public int getEstimatedEndTime()
         {
             int secondsRemaining = 0;
+
+            if (currentPrinting == null)
+                return 0;
 
             // Current printing doc
             int remaining = this.currentPrinting.getWeight() - this.bytesPrinted;

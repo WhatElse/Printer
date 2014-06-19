@@ -353,7 +353,7 @@ namespace PrinterServer
             Printer fastest = null;
             int estimatedTime = 0;
 
-            foreach (Printer printer in this.printers.ToArray())
+            foreach (Printer printer in printers)
             {
                 if (fastest == null || printer.getEstimatedEndTime() < estimatedTime)
                 {
@@ -369,6 +369,7 @@ namespace PrinterServer
         private Printer assignDocument(Document doc)
         {
             Printer fastest = this.getFastest();
+            MessageBox.Show(doc.getName()+" envoyé sur l'imprimante "+fastest.getName()+" ("+fastest.getIP()+")");
 
             fastest.addDocument(doc);
 
