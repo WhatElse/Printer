@@ -318,17 +318,24 @@ namespace PrinterServer
 
         private void AddDocument(string name, int weight)
         {
-            DocumentsList.Items.Add(name.ToString());
-            if (DocumentsList.Items.Count != 0)
+            if (PrinterList.Items.Count != 0)
             {
-                DocumentsList.SelectedIndex = DocumentsList.Items.Count - 1;
-                labelDocument.Text = name.ToString();
+                DocumentsList.Items.Add(name.ToString());
+                if (DocumentsList.Items.Count != 0)
+                {
+                    DocumentsList.SelectedIndex = DocumentsList.Items.Count - 1;
+                    labelDocument.Text = name.ToString();
+                }
+
+                Document document = new Document(name, weight);
+                this.documents.Add(document);
+
+                assignDocument(document);
             }
-
-            Document document = new Document(name, weight);
-            this.documents.Add(document);
-
-            assignDocument(document);
+            else
+            {
+                MessageBox.Show("Il n'y a aucun imprimante enregistrée. Document annulé");
+            }
         }
 
         private void DeleteDocument_Click(object sender, EventArgs e)
