@@ -296,6 +296,7 @@ namespace PrinterServer
             try
             {
                 labelDocument.Text = DocumentsList.SelectedItem.ToString();
+                //updateProgressBar(selectedDocument());
             }
             catch { } // issue #7 : bug lors de l'envoi de plusieurs documents
         }
@@ -333,7 +334,7 @@ namespace PrinterServer
                 this.documents.Add(document);
 
                 assignDocument(document);
-                updateProgressBar(selectedDocument());
+                //updateProgressBar(selectedDocument());
             }
             else
             {
@@ -351,7 +352,7 @@ namespace PrinterServer
                 document = null;
                 DocumentsList.Items.Remove(DocumentsList.SelectedItem);
                 DocumentsList.SelectedIndex = DocumentsList.Items.Count - 1;
-                updateProgressBar(selectedDocument());
+                //updateProgressBar(selectedDocument());
             }
             else
             {
@@ -402,5 +403,22 @@ namespace PrinterServer
             }
         }
 
+        //test supprimer un doc à la fin de l'impression depuis class Printer
+        public void deleteDocumentEndPrinter()
+        {
+            if (DocumentsList.Items.Count != 0)
+            {
+                Document document = selectedDocument();
+                documents.Remove(document);
+                document = null;
+                DocumentsList.Items.Remove(DocumentsList.SelectedItem);
+                DocumentsList.SelectedIndex = DocumentsList.Items.Count - 1;
+                //updateProgressBar(selectedDocument());
+            }
+            else
+            {
+                MessageBox.Show("Il n'y a aucun document en attente");
+            }
+        }
     }
 }
