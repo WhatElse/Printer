@@ -162,6 +162,8 @@ namespace PrinterServer
                 Printer printer = selectedPrinter();
                 printer.setIP(ipAdress.Text);
                 printer.setName(printerName.Text);
+                PrinterList.Items[PrinterList.SelectedIndex] = ipAdress.Text + " - " + printerName.Text;
+                
             }
             else
             {
