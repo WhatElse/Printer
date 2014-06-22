@@ -30,6 +30,7 @@ namespace PrinterServer
         private delegate void RemoveClient(IPEndPoint IP);
         private delegate void AddClient(IPEndPoint IP);
         private delegate void AddDoc(string name, int weight);
+        private delegate Document GetSelectedDocument();
 
 
         public MainWindow()
@@ -40,6 +41,9 @@ namespace PrinterServer
             this.documents = new List<Document>();
             Thread ThreadListening = new Thread(() => OpenSocket());
             ThreadListening.Start();
+            //Thread ThreadProgressBar = new Thread(() => checkProgressBar());
+            //ThreadProgressBar.IsBackground = true;
+            //ThreadProgressBar.Start();
         }
 
         public void OpenSocket()
@@ -390,6 +394,18 @@ namespace PrinterServer
 
         private void progressBar1_Click(object sender, EventArgs e)
         {
+        }
+
+        private void checkProgressBar()
+        {
+            while (true)
+            {
+                Document doc = this.selectedDocument(); // La méthode ne parvient pas à accéder au selectedDocument, je n'ai pas compris la syntaxe du delegate
+
+                this.updateProgressBar(doc);
+
+                Thread.Sleep(1000);
+            }
         }
 
         private void updateProgressBar(Document document)
