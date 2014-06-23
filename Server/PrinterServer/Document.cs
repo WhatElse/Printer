@@ -39,7 +39,7 @@ namespace PrinterServer
 
         public int getWeight()
         {
-            return this.weight;
+            return this.weight * 2000;
         }
 
         public void setWeight(int weight)

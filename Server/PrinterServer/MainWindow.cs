@@ -30,8 +30,8 @@ namespace PrinterServer
         private delegate void RemoveClient(IPEndPoint IP);
         private delegate void AddClient(IPEndPoint IP);
         private delegate void AddDoc(string name, int weight);
-        private delegate Document GetSelectedDocument();
-
+        //private delegate Document GetSelectedDocument();
+        public static Document documentProgressBar;
 
         public MainWindow()
         {
@@ -300,7 +300,8 @@ namespace PrinterServer
             try
             {
                 labelDocument.Text = DocumentsList.SelectedItem.ToString();
-                //updateProgressBar(selectedDocument());
+                MainWindow.documentProgressBar = selectedDocument();
+                checkProgressBar();
             }
             catch { } // issue #7 : bug lors de l'envoi de plusieurs documents
         }
@@ -338,7 +339,8 @@ namespace PrinterServer
                 this.documents.Add(document);
 
                 assignDocument(document);
-                //updateProgressBar(selectedDocument());
+                MainWindow.documentProgressBar = document;
+                updateProgressBar(MainWindow.documentProgressBar);
             }
             else
             {
@@ -400,11 +402,29 @@ namespace PrinterServer
         {
             while (true)
             {
-                Document doc = this.selectedDocument(); // La méthode ne parvient pas à accéder au selectedDocument, je n'ai pas compris la syntaxe du delegate
+                //Document doc = select(); // La méthode ne parvient pas à accéder au selectedDocument, je n'ai pas compris la syntaxe du delegate
+                try
+                {
+                    MessageBox.Show(MainWindow.documentProgressBar.getName());
+                    //this.updateProgressBar(MainWindow.documentProgressBar);
+                    progressBar1.Minimum = 0;
+                    progressBar1.Maximum = 100;
+                    progressBar1.Value = (int)MainWindow.documentProgressBar.getPrintingPercent();
+                    while (progressBar1.Value < progressBar1.Maximum)
+                    {
+                        progressBar1.Value = (int)MainWindow.documentProgressBar.getPrintingPercent();
+                    }
+                    MessageBox.Show((int)MainWindow.documentProgressBar.getPrintingPercent() + "%");
+                }
+                catch
+                {
+                    this.progressBar1.Minimum = 0;
+                    this.progressBar1.Maximum = 100;
+                    this.progressBar1.Value = 0;
+                }
+                
 
-                this.updateProgressBar(doc);
-
-                Thread.Sleep(1000);
+                Thread.Sleep(100);
             }
         }
 
@@ -417,9 +437,9 @@ namespace PrinterServer
             {
                 progressBar1.Value = (int)document.getPrintingPercent();
             }
+            MessageBox.Show((int) document.getPrintingPercent()+"%");
         }
 
-        //test supprimer un doc à la fin de l'impression depuis class Printer
         public void deleteDocumentEndPrinter()
         {
             if (DocumentsList.Items.Count != 0)
@@ -429,6 +449,7 @@ namespace PrinterServer
                 document = null;
                 DocumentsList.Items.Remove(DocumentsList.SelectedItem);
                 DocumentsList.SelectedIndex = DocumentsList.Items.Count - 1;
+
                 //updateProgressBar(selectedDocument());
             }
             else
