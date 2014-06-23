@@ -26,8 +26,8 @@ namespace PrinterClient
 
         public ExplorerClient()
         {
-            this.buffer = new byte[100];
-            GlobalVariables.ipServeur = "192.168.1.30";
+            this.buffer = new byte[300];
+            GlobalVariables.ipServeur = "192.168.0.18";
 
             connectToServer();
 
@@ -217,8 +217,9 @@ namespace PrinterClient
             {
                 //copyTheFile(itemChecked, cpt);
                 //cpt += 1;
-
-                this.buffer = Encoding.ASCII.GetBytes(itemChecked+","+itemChecked.Length.ToString());
+                FileInfo f = new FileInfo(itemChecked);
+                this.buffer = Encoding.ASCII.GetBytes(itemChecked + "," + f.Length);
+                MessageBox.Show(f.Length.ToString());
                 this.SocketClient.BeginSend(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallback), this.SocketClient);
             }
 
