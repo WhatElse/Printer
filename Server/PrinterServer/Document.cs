@@ -59,7 +59,6 @@ namespace PrinterServer
 
         public float getPrintingPercent()
         {
-            System.Console.WriteLine("percent");
             return this.printingPercent;
         }
 

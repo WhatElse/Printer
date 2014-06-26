@@ -30,10 +30,8 @@ namespace PrinterServer
         private delegate void RemoveClient(IPEndPoint IP);
         private delegate void AddClient(IPEndPoint IP);
         private delegate void AddDoc(string name, int weight);
-        private delegate void checkTheProgressBar();
         //private delegate Document GetSelectedDocument();
         public static Document documentProgressBar;
-        public static Dictionary<String, float> avancement = new Dictionary<string,float>();
 
         public MainWindow()
         {
@@ -43,6 +41,9 @@ namespace PrinterServer
             this.documents = new List<Document>();
             Thread ThreadListening = new Thread(() => OpenSocket());
             ThreadListening.Start();
+            //Thread ThreadProgressBar = new Thread(() => checkProgressBar());
+            //ThreadProgressBar.IsBackground = true;
+            //ThreadProgressBar.Start();
         }
 
         public void OpenSocket()
@@ -135,11 +136,6 @@ namespace PrinterServer
         private void ThreadMethodAddTheDocument()
         {
             this.Invoke(new AddDoc(AddDocument), name, weight);
-        }
-
-        private void ThreadMethodProgressBar()
-        {
-            this.Invoke(new checkTheProgressBar(checkProgressBar));
         }
 
         private void AddClientToTheListe(IPEndPoint IP)
@@ -344,13 +340,7 @@ namespace PrinterServer
 
                 assignDocument(document);
                 MainWindow.documentProgressBar = document;
-                //updateProgressBar(MainWindow.documentProgressBar);
-                Thread checkTheProgressBar = new Thread(new ThreadStart(ThreadMethodProgressBar));
-                checkTheProgressBar.IsBackground = true;
-                checkTheProgressBar.Start();
-                //Thread ThreadProgressBar = new Thread(() => checkProgressBar());
-                //ThreadProgressBar.IsBackground = true;
-               // checkTheProgressBar.Start();
+                updateProgressBar(MainWindow.documentProgressBar);
             }
             else
             {
@@ -415,31 +405,22 @@ namespace PrinterServer
                 //Document doc = select(); // La méthode ne parvient pas à accéder au selectedDocument, je n'ai pas compris la syntaxe du delegate
                 try
                 {
+                    MessageBox.Show(MainWindow.documentProgressBar.getName());
                     //this.updateProgressBar(MainWindow.documentProgressBar);
                     progressBar1.Minimum = 0;
                     progressBar1.Maximum = 100;
-                    float percent = (float) 0;
-                    //progressBar1.Value = (MainWindow.documentProgressBar == null ? 0 : (int)MainWindow.documentProgressBar.getPrintingPercent());
-                    MainWindow.avancement.TryGetValue(MainWindow.documentProgressBar.getName(), out percent);
-                    /*while (progressBar1.Value < progressBar1.Maximum)
-                    {*/
-                        //progressBar1.Value = (MainWindow.documentProgressBar == null ? 0 : (int)MainWindow.documentProgressBar.getPrintingPercent());
-                        percent = (float) 0;
-                        MainWindow.avancement.TryGetValue(MainWindow.documentProgressBar.getName(), out percent);
-                        //MessageBox.Show("% : "+percent.ToString());
-                        progressBar1.Value = (int) percent * 100;
-                      //  this.UIThread(() => avcmt.Text = 
-                        avcmt.Text = (int)(percent * 100) + " %";
-                        this.Refresh();
-                    //}
-                    //MessageBox.Show( "%");
+                    progressBar1.Value = (int)MainWindow.documentProgressBar.getPrintingPercent();
+                    while (progressBar1.Value < progressBar1.Maximum)
+                    {
+                        progressBar1.Value = (int)MainWindow.documentProgressBar.getPrintingPercent();
+                    }
+                    MessageBox.Show((int)MainWindow.documentProgressBar.getPrintingPercent() + "%");
                 }
                 catch
                 {
                     this.progressBar1.Minimum = 0;
                     this.progressBar1.Maximum = 100;
-                    this.progressBar1.Value = (int) (MainWindow.documentProgressBar.getPrintingPercent() * 100);
-                    MessageBox.Show(((int) (MainWindow.documentProgressBar.getPrintingPercent() * 100)).ToString()+" %");
+                    this.progressBar1.Value = 0;
                 }
                 
 
@@ -451,10 +432,10 @@ namespace PrinterServer
         {
             progressBar1.Minimum = 0;
             progressBar1.Maximum = 100;
-            progressBar1.Value = (document == null ? 0 : (int) document.getPrintingPercent());
+            progressBar1.Value = (int) document.getPrintingPercent();
             while (progressBar1.Value < progressBar1.Maximum)
             {
-                progressBar1.Value = (document == null ? 0 : (int)document.getPrintingPercent());
+                progressBar1.Value = (int)document.getPrintingPercent();
             }
             MessageBox.Show((int) document.getPrintingPercent()+"%");
         }

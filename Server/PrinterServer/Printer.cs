@@ -136,15 +136,9 @@ namespace PrinterServer
                 ratio = (Math.Min(10000, remaining) / 10000);
 
                 this.currentPrinting.setPrintingPercent((float) ((float)bytesPrinted / (float) this.currentPrinting.getWeight()));
-                if(MainWindow.avancement.ContainsKey(this.currentPrinting.getName()))
-                {
-                    MainWindow.avancement.Remove(this.currentPrinting.getName());
-                }
-                MainWindow.avancement.Add(this.currentPrinting.getName(), ((float) ((float)bytesPrinted / (float) this.currentPrinting.getWeight())));
 
                 Thread.Sleep((int) (60 * 1000 / this.speed * ratio));
-                //MessageBox.Show(this.currentPrinting.getName() + " : " + (int)((float)bytesPrinted / (float) this.currentPrinting.getWeight() * 100.0) + "%");
-
+                MessageBox.Show(this.currentPrinting.getName() + " : " + (int)((float)bytesPrinted / (float) this.currentPrinting.getWeight() * 100.0) + "%");
             }
 
             //MessageBox.Show(this.currentPrinting.getName()+" a fini son impression");
