@@ -170,3 +170,4 @@ pip-log.txt
 .DS_Store
 
 .pdf
+PrinterClient/PrinterClient/test.pdf
