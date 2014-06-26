@@ -54,6 +54,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.ipAdress = new System.Windows.Forms.TextBox();
             this.labelDocument = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.avcmt = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -163,6 +165,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.avcmt);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.progressBar1);
             this.groupBox1.Controls.Add(this.lblFichierEnCours);
             this.groupBox1.Controls.Add(this.label2);
@@ -199,6 +203,16 @@
             // 
             resources.ApplyResources(this.labelDocument, "labelDocument");
             this.labelDocument.Name = "labelDocument";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // avcmt
+            // 
+            resources.ApplyResources(this.avcmt, "avcmt");
+            this.avcmt.Name = "avcmt";
             // 
             // MainWindow
             // 
@@ -260,6 +274,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox ipAdress;
         private System.Windows.Forms.Label labelDocument;
+        private System.Windows.Forms.Label avcmt;
+        private System.Windows.Forms.Label label5;
     }
 }
 
